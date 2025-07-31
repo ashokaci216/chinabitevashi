@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>China Bite</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e53935">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+  <style>
+    .hidden { display: none !important; }
+
+    .hero {
+      width: 100%;
+      height: 240px;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1.25rem;
+      padding: 1.5rem;
+      justify-items: center;
+    }
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+    .category-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+    .category-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    @media (min-width: 768px) {
+      .category-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .category-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    /* === Slide Cart V1 === */
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+      z-index: 1050;
+      padding: 1rem;
+      transition: right 0.3s ease-in-out;
+    }
+    .cart-panel.active {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    #close-cart {
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      color: #e53935;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .view-cart-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #00a884;
+      color: white;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      z-index: 998;
+      font-weight: bold;
+    }
+    .view-cart-bar.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Section -->
+  <div id="intro-screen" class="intro-screen">
+    <img src="images/china-logo.png" alt="China Bite Logo" class="intro-logo">
+    <p class="intro-text">Welcome to China Bite</p>
+    <p class="intro-subtext">Authentic Chinese flavors • Handcrafted recipes • Fresh local ingredients</p>
+    <p class="intro-subtext">From Wok to Your Table 🍜</p>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <img src="images/china-logo.png" alt="China Bite" class="header-logo">
+      <div class="cart-icon-desktop" id="desktop-cart-btn">
+        🛒 <span id="cart-count-desktop">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <img src="images/china-hero.jpg" alt="Hero Banner">
+  </section>
+
+  <!-- Category Grid -->
+  <section id="category-section" class="category-grid">
+    <!-- Category cards will be inserted dynamically -->
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu-section" class="menu-section hidden">
+    <div class="menu-header">
+      <button id="back-to-categories" class="back-btn">← Back</button>
+      <h2 id="menu-heading">Category</h2>
+    </div>
+    <div id="product-list" class="product-list"></div>
+  </section>
+
+  <!-- Floating View Cart Bar (Mobile Only) -->
+  <div id="view-cart-bar" class="view-cart-bar">
+    <span id="cart-bar-text">0 items added</span>
+    <button id="view-cart-btn">VIEW CART</button>
+  </div>
+
+  <!-- Slide-in Cart Panel -->
+<aside id="cart-panel" class="cart-panel">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button id="close-cart" aria-label="Close Cart">❌</button>
+  </div>
+
+  <div id="cart-items" class="cart-body"></div>
+
+  <p class="cart-total">Grand Total: ₹<span id="cart-total">0</span></p>
+  <p class="total-items">Total Items: <span id="cart-count-text">0</span></p>
+
+  <!-- 🆕 Instruction Textarea -->
+  <div class="instruction-field">
+    <textarea id="cooking-instructions" rows="2" placeholder="Any instructions? (e.g. Less spicy, No mushroom)"></textarea>
+  </div>
+
+  <button id="clear-cart" class="clear-cart-btn">Clear Cart</button>
+
+  <div class="order-fields">
+    <input type="text" id="name-and-phone-number" placeholder="Name and Phone Number">
+    <input type="text" id="table-number-or-address" placeholder="Table Number or Address">
+  </div>
+
+  <a id="whatsapp-order" target="_blank" class="whatsapp-btn">Place Order via WhatsApp</a>
+</aside>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-modal" class="close-modal">❌</button>
+      <img id="modal-image" src="" alt="Preview">
+      <h3 id="modal-name"></h3>
+      <p id="modal-description"></p>
+      <p id="modal-price"></p>
+      <button id="modal-add-to-cart">➕ Add to Cart</button>
+      <a href="#menu-section" id="back-to-menu" class="back-link">← Back to Menu</a>
+    </div>
+  </div>
+
+  <!-- Floating Home Button -->
+<button id="home-floating-btn" class="floating-home-btn hidden">🏠 Home</button>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>📍 JK Chambers, Ground Floor, Sector 17, Vashi, Navi Mumbai</p>
+    <p>📱 WhatsApp Orders: <a href="https://wa.me/919867378209" target="_blank">+91 9867378209</a></p>
+  </footer>
+</body>
+</html>
