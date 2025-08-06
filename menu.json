@@ -1,48 +1,48 @@
 [
   {
-    "name": "🟢BOGO Veg Manchow Soup 800ml",
-    "price": 250,
+    "name": "🟢BOGO Veg Manchow Soup",
+    "price": 150,
     "category": "BOGO",
     "description": "Chopped veg base tasty soup.",
     "image": "veg-manchow-soup.jpg"
   },
   {
-    "name": "🔺BOGO Chicken Manchow Soup 800ml",
-    "price": 330,
+    "name": "🔺BOGO Chicken Manchow Soup",
+    "price": 150,
     "category": "BOGO",
     "description": "Chopped veg base tasty soup.",
     "image": "chicken-manchow-soup.jpg"
   },
   {
-    "name": "🔺Chicken Fried Rice Half",
+    "name": "🔺Chicken Fried Rice Half & 2 Pcs Lollypop",
     "price": 150,
     "category": "Meal for 1",
     "description": "Tasty meal for 1.",
     "image": "chicken-fried-rice.jpg"
   },
   {
-    "name": "🔺Chicken Schezwan Rice half",
-    "price": 170,
+    "name": "🔺Chicken Schezwan Rice half & Chicken Chilly Dry half",
+    "price": 180,
     "category": "Meal for 1",
     "description": "Tasty meal for 1.",
     "image": "chicken-schezwan-rice.jpg"
   },
   {
-    "name": "🔺Chicken Hakka Noodle Half",
-    "price": 150,
+    "name": "🔺Chicken Hakka Noodle Half & Chicken Schezwan Gravy Half",
+    "price": 180,
     "category": "Meal for 1",
     "description": "Tasty meal for 1 .",
     "image": "chicken-hakka-noodle.jpg"
   },
   {
-    "name": "🔺Chicken Schezwan Noodle Half",
-    "price": 170,
+    "name": "🔺Chicken Schezwan Noodle Half & Chicken Chilly Gravy Half",
+    "price": 180,
     "category": "Meal for 1",
     "description": "Tasty meal for 1.",
     "image": "chicken-schezwan-noodle.jpg"
   },
   {
-    "name": "🟢Veg Schezwan Fried Rice half",
+    "name": "🟢Veg Schezwan Fried Rice half Veg Manchurian Gravy Half",
     "price": 160,
     "category": "Meal for 1",
     "description": "Tasty meal for 1.",
@@ -959,3 +959,4 @@
     "image": "prawns-chilly-gravy.jpg"
   }
 ]
+
