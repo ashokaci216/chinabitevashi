@@ -8,7 +8,7 @@
   },
   {
     "name": "🔺BOGO Chicken Manchow Soup",
-    "price": 150,
+    "price": 180,
     "category": "BOGO",
     "description": "Chopped veg base tasty soup.",
     "image": "chicken-manchow-soup.jpg"
@@ -959,4 +959,5 @@
     "image": "prawns-chilly-gravy.jpg"
   }
 ]
+
 
