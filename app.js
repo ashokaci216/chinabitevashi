@@ -195,7 +195,7 @@ function setupCartButtons() {
   }
 
     const encoded = encodeURIComponent(message);
-    document.getElementById("whatsapp-order").href = `https://wa.me/919819618487?text=${encoded}`;
+    document.getElementById("whatsapp-order").href = `https://wa.me/918104193919?text=${encoded}`;
 
     setTimeout(() => {
       alert("✅ Your order has been placed!");
@@ -230,4 +230,5 @@ function openPreview(name) {
     document.getElementById("preview-modal").classList.add("hidden");
   };
 }
+
 
