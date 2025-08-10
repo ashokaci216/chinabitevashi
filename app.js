@@ -18,9 +18,35 @@ const categories = [
   { name: "Main Course", icon: "maincourse.png" },
 ];
 
+/* ---------- View helpers (NEW) ---------- */
+function showCategoriesView() {
+  document.getElementById("menu-section").classList.add("hidden");
+  document.getElementById("category-section").classList.remove("hidden");
+  document.getElementById("home-floating-btn").classList.add("hidden");
+}
+
+function showProductsView() {
+  document.getElementById("category-section").classList.add("hidden");
+  document.getElementById("menu-section").classList.remove("hidden");
+  document.getElementById("home-floating-btn").classList.remove("hidden");
+}
+
+// Render products for a given category WITHOUT pushing history (NEW)
+function renderForCategory(categoryName) {
+  document.getElementById("menu-heading").textContent = categoryName;
+  fetch("menu.json")
+    .then(res => res.json())
+    .then(data => {
+      allProducts = data.filter(item => item.category === categoryName);
+      renderProducts();
+    });
+}
+
+/* ---------- App init (MODIFIED) ---------- */
 window.onload = () => {
   setTimeout(() => {
-    document.getElementById('intro-screen').classList.add('hidden');
+    const intro = document.getElementById('intro-screen');
+    if (intro) intro.classList.add('hidden');
   }, 3000);
 
   displayCategories();
@@ -32,14 +58,28 @@ window.onload = () => {
   }
 
   setupCartButtons();
+
+  // Ensure we start on a "home" (categories) state
+  if (!history.state) {
+    history.replaceState({ view: "categories" }, "", location.pathname);
+  }
+
+  // Deep link support: if URL has #Category, open it
+  const hashCat = decodeURIComponent(location.hash.replace("#", ""));
+  if (hashCat) {
+    openCategory(hashCat);
+  } else {
+    showCategoriesView();
+  }
 };
 
+/* ---------- In-page home/back button (MODIFIED) ---------- */
 document.getElementById("home-floating-btn").onclick = () => {
-  document.getElementById("menu-section").classList.add("hidden");
-  document.getElementById("category-section").classList.remove("hidden");
-  document.getElementById("home-floating-btn").classList.add("hidden");
+  // Use history so phone back and UI back behave the same
+  history.back();
 };
 
+/* ---------- Categories ---------- */
 function displayCategories() {
   const section = document.getElementById("category-section");
   categories.forEach(cat => {
@@ -54,27 +94,22 @@ function displayCategories() {
   });
 }
 
+/* ---------- Open Category (MODIFIED) ---------- */
 function openCategory(categoryName) {
-  document.getElementById("category-section").classList.add("hidden");
-  document.getElementById("menu-section").classList.remove("hidden");
-  document.getElementById("menu-heading").textContent = categoryName;
-  document.getElementById("home-floating-btn").classList.remove("hidden");
-
-  fetch("menu.json")
-    .then(res => res.json())
-    .then(data => {
-      allProducts = data.filter(item => item.category === categoryName);
-      renderProducts();
-    });
+  // Push a history state so phone back button returns here
+  history.pushState({ view: "products", cat: categoryName }, "", `#${encodeURIComponent(categoryName)}`);
+  showProductsView();
+  renderForCategory(categoryName);
 }
 
+/* ---------- Product rendering (unchanged) ---------- */
 function renderProducts() {
   const list = document.getElementById("product-list");
   list.innerHTML = "";
   allProducts.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card";
-   card.innerHTML = `
+    card.innerHTML = `
   <div class="product-details">
     <h3>${product.name}</h3>
     <p>${product.description}</p>
@@ -135,7 +170,7 @@ function updateCart() {
     const div = document.createElement("div");
     div.className = "border-b py-2 text-sm";
     div.className = "cart-item";
-div.innerHTML = `
+    div.innerHTML = `
   <div class="cart-item-text">
     <span>${item.name} x ${item.qty} = ₹${item.qty * item.price}</span>
   </div>
@@ -167,11 +202,12 @@ function setupCartButtons() {
     updateCart();
     renderProducts();
   };
+
+  // Back to categories (MODIFIED -> use history)
   document.getElementById("back-to-categories").onclick = () => {
-    document.getElementById("menu-section").classList.add("hidden");
-    document.getElementById("category-section").classList.remove("hidden");
-    document.getElementById("home-floating-btn").classList.add("hidden");
+    history.back(); // triggers popstate
   };
+
   document.getElementById("whatsapp-order").onclick = () => {
     const name = document.getElementById("name-and-phone-number").value;
     const address = document.getElementById("table-number-or-address").value;
@@ -189,10 +225,10 @@ function setupCartButtons() {
     message += `\n\nTotal: ₹${total}`;
     message += `\n\nName: ${name}\nAddress: ${address}`;
 
-      const instruction = document.getElementById("cooking-instructions").value;
-  if (instruction) {
-    message += `\n\nInstructions: ${instruction}`;
-  }
+    const instruction = document.getElementById("cooking-instructions").value;
+    if (instruction) {
+      message += `\n\nInstructions: ${instruction}`;
+    }
 
     const encoded = encodeURIComponent(message);
     document.getElementById("whatsapp-order").href = `https://wa.me/918104193919?text=${encoded}`;
@@ -210,6 +246,7 @@ function setupCartButtons() {
   };
 }
 
+/* ---------- Preview modal (unchanged) ---------- */
 function openPreview(name) {
   const item = allProducts.find(p => p.name === name);
   if (!item) return;
@@ -231,4 +268,19 @@ function openPreview(name) {
   };
 }
 
-
+/* ---------- Phone back / Browser back handler (NEW) ---------- */
+window.addEventListener("popstate", (event) => {
+  const st = event.state;
+  if (st && st.view === "products" && st.cat) {
+    // Return to that category’s products (no extra push)
+    showProductsView();
+    renderForCategory(st.cat);
+  } else {
+    // Back to categories/home
+    showCategoriesView();
+    // Optional: clean the URL hash so a second back closes the tab/app
+    if (location.hash) {
+      history.replaceState({ view: "categories" }, "", location.pathname);
+    }
+  }
+});
