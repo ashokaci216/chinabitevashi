@@ -79,7 +79,38 @@ body {
   font-size: 1.2rem;
   margin-left: 6px;
 }
+/* Hours pill between logo and cart */
+.hours-badge{
+  display: inline-block;
+  margin: 0 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;      /* pill */
+  white-space: nowrap;       /* keep on one line */
+  font-weight: bold;         /* make text bold */
+}
 
+/* Give a little breathing room between items */
+.header .container{
+  gap: 10px;                 /* keeps logo, hours, cart from touching */
+}
+
+/* Keep cart anchored to the far right cleanly */
+.cart-icon-desktop{
+  margin-left: auto;         /* pushes cart to the right edge */
+}
+
+/* Responsive tweaks */
+@media (max-width: 420px){
+  .hours-badge{ font-size: 11px; padding: 3px 8px; }
+}
+@media (max-width: 360px){
+  .hours-badge{ display: none; }  /* hide on ultra small screens */
+}
 /* === Hero Banner === */
 .hero img {
   width: 100%;
@@ -459,5 +490,6 @@ body {
 .hidden {
   display: none !important;
 }
+
 
 
