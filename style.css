@@ -84,7 +84,7 @@ body {
   display: inline-block;
   margin: 0 10px;
   padding: 4px 10px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1;
   color: #fff;
   background: rgba(255,255,255,0.15);
@@ -490,6 +490,7 @@ body {
 .hidden {
   display: none !important;
 }
+
 
 
 
