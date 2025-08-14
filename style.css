@@ -508,6 +508,23 @@ body {
   display: none !important;
 }
 
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* default for mobile */
+  gap: 0.8rem;
+  background-color: #fff3e0;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* desktop: auto-fit */
+  }
+}
+
+
+
 
 
 
