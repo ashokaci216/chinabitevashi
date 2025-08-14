@@ -508,20 +508,51 @@ body {
   display: none !important;
 }
 
+/* === Category Grid (3 per row on mobile, limited on desktop) === */
 .category-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* default for mobile */
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;  /* mobile: 3 per row */
   gap: 0.8rem;
   background-color: #fff3e0;
   padding: 0.8rem;
   text-align: center;
+
+  /* prevent ultra-wide single row on desktop */
+  max-width: 1200px;         /* tweak if needed */
+  margin: 0 auto;            /* center the grid container */
 }
 
+/* Neutralize framework child widths (col-6 / w-1/2 etc.) */
+.category-grid > * {
+  width: auto !important;
+  max-width: none !important;
+  flex: 0 0 auto !important;
+}
+
+/* Tablet */
 @media (min-width: 768px) {
   .category-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* desktop: auto-fit */
+    grid-template-columns: repeat(4, 1fr) !important; /* 4 per row */
   }
 }
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(5, 1fr) !important; /* 5 per row */
+  }
+}
+
+/* Large desktop (optional) */
+@media (min-width: 1440px) {
+  .category-grid {
+    grid-template-columns: repeat(6, 1fr) !important; /* 6 per row */
+  }
+}
+
+
+
+
 
 
 
