@@ -434,63 +434,63 @@
     "image": "schezwan-wings.jpg"
   },
   {
-    "name": "🟢Veg Momo 10 Pcs",
+    "name": "🟢Veg Momo 6 Pcs",
     "price": 80,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-momo.jpg"
   },
   {
-    "name": "🟢Paneer Momo 10 Pcs",
+    "name": "🟢Paneer Momo 6 Pcs",
     "price": 100,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-momo.jpg"
   },
   {
-    "name": "Chicken Momo 10 pcs",
+    "name": "Chicken Momo 6 pcs",
     "price": 100,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-momo.jpg"
   },
   {
-    "name": "🟢Veg Schezwan Momo 10 pcs",
+    "name": "🟢Veg Schezwan Momo 6 pcs",
     "price": 130,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-schezwan-momo.jpg"
   },
   {
-    "name": "🟢Paneer Schezwan Momo 10 Pcs",
+    "name": "🟢Paneer Schezwan Momo 6 Pcs",
     "price": 140,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-schezwan-momo.jpg"
   },
   {
-    "name": "🔺Chicken Schezwan Momo 10 pcs",
+    "name": "🔺Chicken Schezwan Momo 6 pcs",
     "price": 140,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-schezwan-momo.jpg"
   },
   {
-    "name": "🟢Veg Mongolian Momo 10 pcs",
+    "name": "🟢Veg Mongolian Momo 6 pcs",
     "price": 130,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-mongolian-momo.jpg"
   },
   {
-    "name": "🟢Paneer Mongolian Momo 10 pcs",
+    "name": "🟢Paneer Mongolian Momo 6 pcs",
     "price": 140,
     "category": "Momo",
     "description": "Tasty momo dish.",
     "image": "veg-mongolian-momo.jpg"
   },
   {
-    "name": "🔺Chicken Mongolian Momo 10 pcs",
+    "name": "🔺Chicken Mongolian Momo 6 pcs",
     "price": 140,
     "category": "Momo",
     "description": "Tasty momo dish.",
@@ -959,5 +959,6 @@
     "image": "prawns-chilly-gravy.jpg"
   }
 ]
+
 
 
