@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>China Bite</title>
+
+  <!-- Favicon -->
+<!-- Standard favicon -->
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="180x180" href="images/favicon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512x512.png">
+
+<!-- Manifest -->
+<link rel="manifest" href="manifest.json?v=2">
+
+<!-- Social Media Preview -->
+<meta property="og:title" content="China Bite &ndash; Authentic Chinese Flavours">
+<meta property="og:description" content="Order handcrafted Chinese dishes in Vashi. Fresh local ingredients. WhatsApp ordering available.">
+<meta property="og:url" content="https://chinabite.in/v2/">
+<meta property="og:image" content="https://chinabite.in/v2/images/china-logo.png">
+
+<link rel="stylesheet" href="style.css?v=2026-02-1">
+<script defer src="app.js"></script>
+<meta name="theme-color" content="#e53935">
+<link rel="apple-touch-icon" href="images/favicon-192x192.png">
+
+<!-- CSS -->
+  <style>
+    .hidden { display: none !important; }
+
+    .hero {
+      width: 100%;
+      height: 240px;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1.25rem;
+      padding: 1.5rem;
+      justify-items: center;
+    }
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+    .category-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+    .category-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    @media (min-width: 768px) {
+      .category-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .category-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+
+    /* === Slide Cart V1 === */
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+      z-index: 1050;
+      padding: 1rem;
+      transition: right 0.3s ease-in-out;
+    }
+    .cart-panel.active {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    #close-cart {
+      font-size: 1.4rem;
+      background: none;
+      border: none;
+      color: #e53935;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .view-cart-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #00a884;
+      color: white;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      z-index: 998;
+      font-weight: bold;
+    }
+    .view-cart-bar.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro Section -->
+  <div id="intro-screen" class="intro-screen">
+    <img src="images/china-logo.png" alt="China Bite Logo" class="intro-logo">
+    <p class="intro-text">Welcome to China Bite</p>
+    <p class="intro-subtext">Authentic Chinese flavors &bull; Handcrafted recipes &bull; Fresh local ingredients</p>
+    <p class="intro-subtext">From Wok to Your Table &#127836;</p>
+  </div>
+
+<header class="header">
+  <div class="container header-inner">
+
+    <!-- Brand -->
+    <div class="brand">
+      <img src="images/china-logo.png" alt="China Bite" class="header-logo">
+      <span class="brand-location">Vashi</span>
+    </div>
+
+    <!-- Hours -->
+    <span class="hours-badge" aria-label="Business hours">
+      &#128338; <strong>Open Daily: 11 AM &ndash; 11 PM</strong>
+    </span>
+
+    <!-- Cart -->
+    <div class="cart-icon-desktop" id="desktop-cart-btn">
+      &#128722; <span id="cart-count-desktop">0</span>
+    </div>
+
+  </div>
+</header>
+
+  <main id="home-view">
+  <!-- Hero Banner -->
+  <section class="hero">
+    <img src="images/china-hero.jpg" alt="Hero Banner">
+  </section>
+
+     <!-- ==== Running Offer Strip ==== -->
+ <div class="offer-strip">
+   <div class="offer-track">
+     Free Delivery above ₹400* &nbsp;&nbsp; • &nbsp;&nbsp;
+     Flat 20% OFF above ₹300* &nbsp;&nbsp; • &nbsp;&nbsp;
+     30–40% OFF on Today’s Special* &nbsp;&nbsp; • &nbsp;&nbsp;
+     Offers valid only on website orders &nbsp;&nbsp; • &nbsp;&nbsp;
+     No combinable offers
+   </div>
+ </div>
+
+  <!-- ==============================
+     After Hero: Today Offer + Combos
+================================== -->
+
+<section class="after-hero">
+
+  <!-- TODAY'S OFFER (2 items) -->
+  <div class="sec-head">
+    <h2>Today&rsquo;s Offer</h2>
+    <span class="sec-note">Limited Time</span>
+  </div>
+
+  <div class="offer-row">
+  <!-- Offer Card 1 (Veg) -->
+  <article class="offer-card" data-id="offer-veg">
+    <div class="offer-top">
+      <img class="offer-img" src="assets/offer-veg.jpg" alt="Veg Offer" />
+      <div class="offer-info">
+        <div class="offer-name">Honey Chilly Potatoes</div>
+        <div class="offer-meta">
+          <span class="dot veg" title="Veg"></span>
+          <span class="offer-desc">Sweet + Spicy + Savory</span>
+        </div>
+      </div>
+    </div>
+
+      <div class="offer-bottom">
+        <div class="price">
+          <span class="old">&#8377;270</span>
+          <span class="now">&#8377;189</span>
+        </div>
+        <button class="btn-add" type="button" data-type="today" data-id="offer-veg">ADD</button>
+      </div>
+    </article>
+
+    <!-- Offer Card 2 (Non-Veg) -->
+    <article class="offer-card" data-id="offer-nv">
+        <div class="offer-top">
+        <img class="offer-img" src="assets/offer-nv.jpg" alt="Non Veg Offer" />
+        <div class="offer-info">
+          <div class="offer-name">Chicken Spring Roll</div>
+          <div class="offer-meta">
+            <span class="dot nonveg" title="Non-Veg"></span>
+            <span class="offer-desc">Juicy + Flavorful + Fresh</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-bottom">
+        <div class="price">
+          <span class="old">&#8377;280</span>
+          <span class="now">&#8377;196</span>
+        </div>
+        <button class="btn-add" type="button" data-type="today" data-id="offer-nv">ADD</button>
+      </div>
+    </article>
+  </div>
+
+  <!-- ===================== COMBOS (UPDATED) ===================== -->
+<section class="section" id="combos">
+
+  <div class="sec-head mt-16">
+    <h2>Combos</h2>
+    <span class="sec-note">Meal for 1 + Family Combos</span>
+  </div>
+
+  <div class="combo-grid">
+
+    <!-- ===================== VEG MEAL COMBOS ===================== -->
+
+    <!-- Veg Meal 1 -->
+    <article class="combo-card" data-id="combo-veg-1">
+      <div class="combo-badges">
+        <span class="pill">VEG</span>
+        <span class="pill">WITH DRINK</span>
+      </div>
+
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/veg-meal-1.jpg" alt="Veg Fried Rice + Veg Manchurian Gravy + Soft Drink" loading="lazy" />
+      </div>
+
+      <div class="combo-title">Veg Meal 1</div>
+      <div class="combo-lines">Veg Fried Rice (Meal Portion) + Veg Manchurian Gravy (Half) + 250ml Soft Drink</div>
+      <div class="combo-desc">Simple and satisfying Chinese meal.</div>
+
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;329</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-veg-1">ADD</button>
+      </div>
+    </article>
+
+    <!-- Veg Meal 2 -->
+    <article class="combo-card" data-id="combo-veg-2">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/veg-meal-2.jpg" alt="Veg Hakka Noodles + Paneer Chilli Gravy + Soft Drink" loading="lazy" />
+      </div>
+      <div class="combo-title">Veg Meal 2</div>
+      <div class="combo-lines">Veg Hakka Noodles (Meal Portion) + Paneer Chilli Gravy (Half) + 250ml Soft Drink</div>
+      <div class="combo-desc">Classic noodles with soft paneer.</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;339</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-veg-2">ADD</button>
+      </div>
+    </article>
+
+    <!-- Veg Meal 3 -->
+    <article class="combo-card" data-id="combo-veg-3">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/veg-meal-3.jpg" alt="Chilli Garlic Noodles + Crispy Veg + Soft Drink" loading="lazy" />
+      </div>
+      <div class="combo-title">Veg Meal 3</div>
+      <div class="combo-lines">Chilli Garlic Noodles (Meal Portion) + Crispy Veg (Half) + 250ml Soft Drink</div>
+      <div class="combo-desc">Spicy and crunchy combination.</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;349</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-veg-3">ADD</button>
+      </div>
+    </article>
+
+    <!-- Veg Meal 4 -->
+    <article class="combo-card" data-id="combo-veg-4">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/veg-meal-4.jpg" alt="Veg Fried Rice + Veg Manchurian Gravy" loading="lazy" />
+      </div>
+      <div class="combo-title">Veg Meal 4</div>
+      <div class="combo-lines">Veg Fried Rice (Meal Portion) + Veg Manchurian Gravy (Meal Portion)</div>
+      <div class="combo-desc">Rice with saucy gravy option.</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;319</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-veg-4">ADD</button>
+      </div>
+    </article>
+
+    <!-- ===================== NON-VEG ===================== -->
+
+    <article class="combo-card" data-id="combo-nv-1">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/nonveg-meal-1.jpg" alt="Chicken Fried Rice + Chicken Lollipop + Soft Drink" loading="lazy" />
+      </div>
+      <div class="combo-title">Non-Veg Meal 1</div>
+      <div class="combo-lines">Chicken Fried Rice (Meal Portion) + Chicken Lollipop (3 pcs) + 250ml Soft Drink</div>
+      <div class="combo-desc">Perfect single chicken meal.</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;379</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-nv-1">ADD</button>
+      </div>
+    </article>
+
+    <article class="combo-card" data-id="combo-nv-2">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/nonveg-meal-2.jpg" alt="Chicken Hakka Noodles + Chilli Chicken Gravy + Soft Drink" loading="lazy" />
+      </div>
+      <div class="combo-title">Non-Veg Meal 2</div>
+      <div class="combo-lines">Chicken Hakka Noodles (Meal Portion) + Chilli Chicken Gravy (Half) + 250ml Soft Drink</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;389</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-nv-2">ADD</button>
+      </div>
+    </article>
+
+    <article class="combo-card" data-id="combo-nv-3">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/nonveg-meal-3.jpg" alt="Schezwan Chicken Noodles + Chicken Manchurian Gravy + Soft Drink" loading="lazy" />
+      </div>
+      <div class="combo-title">Non-Veg Meal 3</div>
+      <div class="combo-lines">Schezwan Chicken Noodles (Meal Portion) + Chicken Manchurian Gravy (Half) + 250ml Soft Drink</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;379</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-nv-3">ADD</button>
+      </div>
+    </article>
+
+    <article class="combo-card" data-id="combo-nv-4">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/nonveg-meal-4.jpg" alt="Chicken Triple Rice + Chicken Lollipop + Soft Drink" loading="lazy" />
+      </div>
+      <div class="combo-title">Non-Veg Meal 4</div>
+      <div class="combo-lines">Chicken Triple Rice (Meal Portion) + Chicken Lollipop (3 pcs) + 250ml Soft Drink</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;399</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-nv-4">ADD</button>
+      </div>
+    </article>
+
+    <!-- Family -->
+
+    <article class="combo-card" data-id="combo-family-1">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/family-combo-1.jpg" alt="Family Combo 1" loading="lazy" />
+      </div>
+      <div class="combo-title">Family Combo 1 Full Portion</div>
+      <div class="combo-lines">Veg Fried Rice + Chicken Hakka Noodles + 6 Lollipop + Chicken Manchurian</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;849</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-family-1">ADD</button>
+      </div>
+    </article>
+
+    <article class="combo-card" data-id="combo-family-2">
+      <div class="combo-img-wrap">
+        <img class="combo-img" src="assets/family-combo-2.jpg" alt="Family Combo 2" loading="lazy" />
+      </div>
+      <div class="combo-title">Family Combo 2 Full Portion</div>
+      <div class="combo-lines">Chicken Triple Rice + Schezwan Noodles + Chilli Chicken Dry + Manchurian Chicken Gravy</div>
+      <div class="combo-bottom">
+        <div class="combo-price">&#8377;949</div>
+        <button class="btn-add" type="button" data-type="combo" data-id="combo-family-2">ADD</button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+  <!-- Category Grid -->
+   <div id="categories"></div>
+  <section id="category-section" class="category-grid">
+    <!-- Category cards will be inserted dynamically -->
+  </section>
+  </main>
+
+  <section id="products-view" class="hidden">
+    <!-- Menu Section -->
+    <section id="menu-section" class="menu-section hidden">
+      <div class="menu-header">
+        <button id="back-to-categories" class="back-btn">&larr; Back</button>
+        <h2 id="menu-heading">Category</h2>
+      </div>
+      <div id="product-list" class="product-list"></div>
+    </section>
+  </section>
+
+  <!-- Floating View Cart Bar (Mobile Only) -->
+  <div id="view-cart-bar" class="view-cart-bar">
+    <span id="cart-bar-text">0 items added</span>
+    <button id="view-cart-btn">VIEW CART</button>
+  </div>
+
+  <!-- Slide-in Cart Panel -->
+<aside id="cart-panel" class="cart-panel">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button id="close-cart" aria-label="Close Cart">&times;</button>
+  </div>
+
+  <div id="cart-items" class="cart-body"></div>
+  <div class="cart-summary">
+    <p class="cart-subtotal">Subtotal: &#8377;<span id="cart-subtotal">0</span></p>
+    <p class="cart-discount">Discount: -&#8377;<span id="cart-discount">0</span></p>
+    <p class="cart-delivery">Delivery: &#8377;<span id="cart-delivery">0</span></p>
+    <p class="cart-total">Grand Total: &#8377;<span id="cart-total">0</span></p>
+    <p class="total-items">Total Items: <span id="cart-count-text">0</span></p>
+
+    <!-- Instruction Textarea -->
+    <div class="instruction-field">
+      <textarea id="cooking-instructions" rows="2" placeholder="Any instructions? (e.g. Less spicy, No mushroom)"></textarea>
+    </div>
+
+    <button id="clear-cart" class="clear-cart-btn">Clear Cart</button>
+
+    <div class="order-fields">
+      <input type="text" id="name-and-phone-number" placeholder="Name and Phone Number">
+      <input type="text" id="table-number-or-address" placeholder="Table Number or Address">
+    </div>
+
+    <a id="whatsapp-order" target="_blank" class="whatsapp-btn">Place Order via WhatsApp</a>
+  </div>
+</aside>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-modal" class="close-modal">&times;</button>
+      <img id="modal-image" src="" alt="Preview">
+      <h3 id="modal-name"></h3>
+      <p id="modal-description"></p>
+      <p id="modal-price"></p>
+      <button id="modal-add-to-cart">+ Add to Cart</button>
+      <a href="#menu-section" id="back-to-menu" class="back-link">&larr; Back to Menu</a>
+    </div>
+  </div>
+
+  <!-- Floating Home Button -->
+<button id="home-floating-btn" class="floating-home-btn hidden">Home</button>
+
+  <!-- Footer -->
+<footer class="footer">
+  <p>&#128205; JK Chambers, Ground Floor, Sector 17, Vashi, Navi Mumbai</p>
+  
+  <p>&#128241; WhatsApp Orders: 
+     <a href="https://wa.me/918104193919" target="_blank">
+        +91 8104193919
+     </a>
+  </p>
+
+  <hr class="footer-divider">
+
+  <p class="copyright">
+    © 2026 China Bite. All Rights Reserved.
+  </p>
+
+  <p class="credit">
+    Site by <a href="https://www.ashokrasali.com" target="_blank">ashokrasali</a>
+  </p>
+</footer>
+
+
