@@ -1,0 +1,956 @@
+[
+  {
+    "name": "🟢BOGO Veg Manchow Soup",
+    "price": 150,
+    "category": "BOGO",
+    "description": "Chopped veg base tasty soup.",
+    "image": "veg-manchow-soup.jpg"
+  },
+  {
+    "name": "🔺BOGO Chicken Manchow Soup",
+    "price": 180,
+    "category": "BOGO",
+    "description": "Chopped veg base tasty soup.",
+    "image": "chicken-manchow-soup.jpg"
+  },
+  {
+    "name": "🔺Chicken Fried Rice Half & 2 Pcs Lollypop",
+    "price": 150,
+    "category": "Meal for 1",
+    "description": "Tasty meal for 1.",
+    "image": "chicken-fried-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Schezwan Rice half & Chicken Chilly Dry half",
+    "price": 180,
+    "category": "Meal for 1",
+    "description": "Tasty meal for 1.",
+    "image": "chicken-schezwan-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Hakka Noodle Half & Chicken Schezwan Gravy Half",
+    "price": 180,
+    "category": "Meal for 1",
+    "description": "Tasty meal for 1 .",
+    "image": "chicken-hakka-noodle.jpg"
+  },
+  {
+    "name": "🔺Chicken Schezwan Noodle Half & Chicken Chilly Gravy Half",
+    "price": 180,
+    "category": "Meal for 1",
+    "description": "Tasty meal for 1.",
+    "image": "chicken-schezwan-noodle.jpg"
+  },
+  {
+    "name": "🟢Veg Schezwan Fried Rice half Veg Manchurian Gravy Half",
+    "price": 160,
+    "category": "Meal for 1",
+    "description": "Tasty meal for 1.",
+    "image": "veg-schezwan-fried-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Chinese Thali",
+    "price": 189,
+    "category": "Combo",
+    "description": "Tasty combo dish with veg spring roll 3pcs,fried rice and veg manchurian gravy.",
+    "image": "veg-chinese-thali.jpg"
+  },
+  {
+    "name": "🔺Chicken Chinese Thali",
+    "price": 199,
+    "category": "Combo",
+    "description": "Tasty combo dish with lollypop 3pcs, egg fried rice and chicken chilly gravy.",
+    "image": "chicken-chinese-thali.jpg"
+  },
+  {
+    "name": "🔺Seafood Chinese Thali",
+    "price": 410,
+    "category": "Combo",
+    "description": "Tasty combo dish with fish finger 3pcs, egg fried rice and prawns chilly gravy.",
+    "image": "seafood-chinese-thali.jpg"
+  },
+  {
+    "name": "🟢Veg Sweet Corn Soup",
+    "price": 120,
+    "category": "Soup",
+    "description": "Healthy and creamy soup.",
+    "image": "veg-sweet-corn-soup.jpg"
+  },
+  {
+    "name": "🟢Veg Hot and Sour Soup",
+    "price": 110,
+    "category": "Soup",
+    "description": "Exotic flavours hot and sour soup.",
+    "image": "veg-hot-and-sour-soup.jpg"
+  },
+  {
+    "name": "🟢Veg Manchow Soup",
+    "price": 110,
+    "category": "Soup",
+    "description": "Chopped veg base tasty soup.",
+    "image": "veg-manchow-soup.jpg"
+  },
+  {
+    "name": "🟢Veg Clear Soup",
+    "price": 110,
+    "category": "Soup",
+    "description": "Flavour with celery mushroom.",
+    "image": "veg-clear-soup.jpg"
+  },
+  {
+    "name": "🟢Veg China Bite Special Soup",
+    "price": 110,
+    "category": "Soup",
+    "description": "Thick spicy soup.",
+    "image": "veg-china-bite-special-soup.jpg"
+  },
+   {
+    "name": "🔺Chicken Sweet Corn Soup",
+    "price": 150,
+    "category": "Soup",
+    "description": "Healthy and creamy soup.",
+    "image": "chicken-sweet-corn-soup.jpg"
+  },
+   {
+    "name": "🔺Chicken Hot and Sour Soup",
+    "price": 140,
+    "category": "Soup",
+    "description": "Exotic flavours hot and sour soup.",
+    "image": "chicken-hot-and-sour-soup.jpg"
+  },
+   {
+    "name": "🔺Chicken Manchow Soup",
+    "price": 140,
+    "category": "Soup",
+    "description": "Chopped veg base tasty soup.",
+    "image": "chicken-manchow-soup.jpg"
+  },
+   {
+    "name": "🔺Chicken Clear Soup",
+    "price": 140,
+    "category": "Soup",
+    "description": "Flavour packed seasoned stock soup.",
+    "image": "chicken-clear-soup.jpg"
+  },
+  {
+    "name": "🔺Chicken Tomyum Soup",
+    "price": 140,
+    "category": "Soup",
+    "description": "Traditional Thai soup.",
+    "image": "chicken-tomyum-soup.jpg"
+  },
+  {
+    "name": "🔺Chicken China Bite Special Soup",
+    "price": 140,
+    "category": "Soup",
+    "description": "Thick spicy signature soup.",
+    "image": "chicken-china-bite-special-soup.jpg"
+  },
+  {
+    "name": "🔺Seafood Manchow Soup",
+    "price": 170,
+    "category": "Soup",
+    "description": "Chopped veg base tasty soup.",
+    "image": "seafood-manchow-soup.jpg"
+  },
+  {
+    "name": "🔺Seafood Tomyum Soup",
+    "price": 170,
+    "category": "Soup",
+    "description": "Traditional Thai soup.",
+    "image": "seafood-tomyum-soup.jpg"
+  },
+  {
+    "name": "🟢Fried Noodle",
+    "price": 50,
+    "category": "Soup",
+    "description": "Fried Noodle.",
+    "image": "fried-noodle.jpg"
+  },
+  {
+    "name": "🟢Veg Spring Roll",
+    "price": 200,
+    "category": "Starter",
+    "description": "Golden fried roll stuffed with vegetables.",
+    "image": "veg-spring-roll.jpg"
+  },
+  {
+    "name": "🟢Veg Manchurian Dry",
+    "price": 170,
+    "category": "Starter",
+    "description": "all time favourite crispy mixed veg balls tangy meduim spicy sauce.",
+    "image": "veg-manchurian-dry.jpg"
+  },
+  {
+    "name": "🟢Veg Crunchy Dry",
+    "price": 210,
+    "category": "Starter",
+    "description": "Tasty starter dish.",
+    "image": "veg-crunchy-dry.jpg"
+  },
+  {
+    "name": "🟢Paneer Chilly Dry",
+    "price": 200,
+    "category": "Starter",
+    "description": "Fried cottage cheese tossed in spicy sauce.",
+    "image": "paneer-chilly-dry.jpg"
+  },
+  {
+    "name": "🟢Paneer Mongolian Dry",
+    "price": 200,
+    "category": "Starter",
+    "description": "Fried cottage cheese tossed in meduim spicy sauce.",
+    "image": "paneer-mongolian-dry.jpg"
+  },
+  {
+    "name": "🟢Chow Chow Potato",
+    "price": 180,
+    "category": "Starter",
+    "description": "Stir fried tossed with onion and bell pepper in spring onion.",
+    "image": "chow-chow-potato.jpg"
+  },
+  {
+    "name": "🟢Kung Pao Potato",
+    "price": 180,
+    "category": "Starter",
+    "description": "Sweet and spicy.",
+    "image": "kung-pao-potato.jpg"
+  },
+  {
+    "name": "🟢Paneer Chilly Pepper🌶️🌶️",
+    "price": 200,
+    "category": "Starter",
+    "description": "Cottage cheese tossed in ginger and water chestnut and celery.",
+    "image": "paneer-chilly-pepper.jpg"
+  },
+  {
+    "name": "🟢China Bite Vegetable",
+    "price": 200,
+    "category": "Starter",
+    "description": "Deep fried crispy vegetable tossed in sweet n sour.",
+    "image": "china-bite-vegetable.jpg"
+  },
+  {
+    "name": "🔺Chicken Spring Roll",
+    "price": 220,
+    "category": "Starter",
+    "description": "Golden fried roll stuffed with vegetables and chicken.",
+    "image": "chicken-spring-roll.jpg"
+  },
+  {
+    "name": "🔺Chicken Lollypop Schezwan Dry 6 pcs",
+    "price": 230,
+    "category": "Starter",
+    "description": "All time favourite appetizer.",
+    "image": "chicken-lollypop-schezwan.jpg"
+  },
+  {
+    "name": "🔺Chicken Lollypop 6 pcs",
+    "price": 180,
+    "category": "Starter",
+    "description": "All time favourite appetizer.",
+    "image": "chicken-lollypop-.jpg"
+  },
+  {
+    "name": "🔺Apple Chicken Dry",
+    "price": 230,
+    "category": "Starter",
+    "description": "Hot and spicy appetizer made with chicken wings.",
+    "image": "apple-chicken-dry.jpg"
+  }, 
+  {
+    "name": "🔺Chicken Chilly Dry",
+    "price": 190,
+    "category": "Starter",
+    "description": "Spiced batter fried chicken with bell pepper, scallion, green chilli and red chilli tossed with soy and chilli sauce.",
+    "image": "chicken-chilly-dry.jpg"
+  },
+  {
+    "name": "🔺Roast Chicken Chilly Dry",
+    "price": 260,
+    "category": "Starter",
+    "description": "Hot and spicy chicken leg boneless tossed in roasted chillies.",
+    "image": "roast-chicken-chilly-dry.jpg"
+  },  
+  {
+    "name": "🔺Chicken Crunchy Dry",
+    "price": 230,
+    "category": "Starter",
+    "description": "Butter fried crunchy chicken tossed in medium red spicy sauce.",
+    "image": "chicken-crunchy-dry.jpg"
+  }, 
+  {
+    "name": "🔺Mongolian Chicken Dry",
+    "price": 220,
+    "category": "Starter",
+    "description": "Fried chicken tossed in hot black garlic sauce.",
+    "image": "mongolian-chicken-dry.jpg"
+  },   
+  {
+    "name": "🔺Dragon Chicken",
+    "price": 210,
+    "category": "Starter",
+    "description": "Chicken stir fried with capsicum sauce and cashew nuts.",
+    "image": "dragon-chicken.jpg"
+  },   
+  {
+    "name": "🔺Stir fry Oyster Chicken with Exotic Veggies",
+    "price": 260,
+    "category": "Starter",
+    "description": "A succulent and delectable dish, the Star Fried oyster chicken with exotic veggies is a treat for the taste buds. A non-fried dish, this dish.",
+    "image": "stir-fry-oyster-chicken.jpg"
+  },   
+  {
+    "name": "🔺Hoisin Foil Chicken",
+    "price": 250,
+    "category": "Starter",
+    "description": "Chef special chicken wrapped in foil.",
+    "image": "hoisin-foil-chicken.jpg"
+  },   
+  {
+    "name": "🔺Chicken Chilly Pepper",
+    "price": 210,
+    "category": "Starter",
+    "description": "Chicken tossed in ginger and scallion, flavoured with ground black pepper.",
+    "image": "chicken-chilly-pepper.jpg"
+  },   
+  {
+    "name": "🔺Shangai Chicken",
+    "price": 210,
+    "category": "Starter",
+    "description": "meduim spicy chicken starter.",
+    "image": "shangai-chicken.jpg"
+  },   
+  {
+    "name": "🔺Crispy Chicken Basil Leaves",
+    "price": 250,
+    "category": "Starter",
+    "description": "Shredded pieces of chicken with garlic and basil leaves.",
+    "image": "crispy-chicken-basil-leaves.jpg"
+  },   
+  {
+    "name": "🔺China Bite Special Chicken Dry",
+    "price": 270,
+    "category": "Starter",
+    "description": "chef special china bite special in meduim spicy sauce.",
+    "image": "china-bite-special-chicken-dry.jpg"
+  },
+  {
+    "name": "🔺Butter Garlic Prawns",
+    "price": 260,
+    "category": "Starter",
+    "description": "Prawns tossed in butter,garlic and black pepper .",
+    "image": "butter-garlic-prawns.jpg"
+  },      
+  {
+    "name": "🔺Chilly Pepper Prawns",
+    "price": 270,
+    "category": "Starter",
+    "description": "Prawn tossed in ginger and achalian flavoured with ground black pepper .",
+    "image": "chilly-pepper-prawns.jpg"
+  },
+  {
+    "name": "🔺Shangai Prawns Dry",
+    "price": 270,
+    "category": "Starter",
+    "description": "Sweet and spicy delicacy, flavoured with water chestnut and celery.",
+    "image": "shangai-prawns-dry.jpg"
+  },            
+  {
+    "name": "🔺Fish Chilly Pepper Dry",
+    "price": 250,
+    "category": "Starter",
+    "description": "Fish tossed in ginger and scallion flavoured with ground black pepper.",
+    "image": "fish-chilly-pepper-dry.jpg"
+  },            
+  {
+    "name": "🔺Dry Red Chilly Fish",
+    "price": 250,
+    "category": "Starter",
+    "description": "Fish finger, marinated with chopped garlic, ginger, onion, chili paste and tomato.",
+    "image": "dry-red-chilly-fish.jpg"
+  },  
+  {
+    "name": "🔺Shangai Fish",
+    "price": 250,
+    "category": "Starter",
+    "description": "Sweet and spicy delicacy, flavoured with water chestnut and celery.",
+    "image": "shangai-fish.jpg"
+  },   
+  {
+    "name": "🔺China Bite Special Prawns Dry",
+    "price": 290,
+    "category": "Starter",
+    "description": "Sweet and spicy delicacy, flavoured with water chestnut and celery.",
+    "image": "china-bite-special-prawns-dry.jpg"
+  },                                   
+  {
+    "name": "🔺Sweet Garlic Chicken Wings",
+    "price": 299,
+    "category": "Oriental Wings",
+    "description": "800 ml 1-2 people A chicken wings tossed in sweet garlic sauce.",
+    "image": "sweet-garlic-chicken-wings.jpg"
+  },
+  {
+    "name": "🔺Kung Pao Chicken Wings Dry",
+    "price": 299,
+    "category": "Oriental Wings",
+    "description": "800 ml 1-2 people 6 piece Chicken wings stir fried with scallions chilly garlic nuts sweet sauce.",
+    "image": "kung-pao-chicken-wings-dry.jpg"
+  },
+  {
+    "name": "🔺Shanghai Chicken Wings Dry",
+    "price": 299,
+    "category": "Oriental Wings",
+    "description": "800 ml 1-2 people 6 piece Sweet and spicy chicken wings delicacy with garlic celery.",
+    "image": "shanghai-chicken-wings-dry.jpg"
+  },
+  {
+    "name": "🔺Mongolian Chicken Wings",
+    "price": 299,
+    "category": "Oriental Wings",
+    "description": "800 ml 1-2 people 6 piece Crispy fried chicken wings are deep-fried, unbreaded chicken wings or drums coated with a vinegar-and-cayenne-pepper hot sauce mixed with butter.",
+    "image": "mongolian-chicken-wings.jpg"
+  },
+  {
+    "name": "🔺Chicken Wings Chilly Dry",
+    "price": 299,
+    "category": "Oriental Wings",
+    "description": "800 ml 1-2 people 6 pcs Spiced butter fry wings scallion green red chilly tossed with soy and chilly sauce.",
+    "image": "chicken-wings-chilly-dry.jpg"
+  },
+  {
+    "name": "🔺Schezwan Wings",
+    "price": 299,
+    "category": "Oriental Wings",
+    "description": "800 ml 1-2 people A hot and spicy appetizer made with drummettes or whole chicken wings with your very favourite schewan sauce..",
+    "image": "schezwan-wings.jpg"
+  },
+  {
+    "name": "🟢Veg Momo 6 Pcs",
+    "price": 80,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-momo.jpg"
+  },
+  {
+    "name": "🟢Paneer Momo 6 Pcs",
+    "price": 100,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-momo.jpg"
+  },
+  {
+    "name": "🔺Chicken Momo 6 pcs",
+    "price": 100,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-momo.jpg"
+  },
+  {
+    "name": "🟢Veg Schezwan Momo 6 pcs",
+    "price": 130,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-schezwan-momo.jpg"
+  },
+  {
+    "name": "🟢Paneer Schezwan Momo 6 Pcs",
+    "price": 140,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-schezwan-momo.jpg"
+  },
+  {
+    "name": "🔺Chicken Schezwan Momo 6 pcs",
+    "price": 140,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-schezwan-momo.jpg"
+  },
+  {
+    "name": "🟢Veg Mongolian Momo 6 pcs",
+    "price": 130,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-mongolian-momo.jpg"
+  },
+  {
+    "name": "🟢Paneer Mongolian Momo 6 pcs",
+    "price": 140,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-mongolian-momo.jpg"
+  },
+  {
+    "name": "🔺Chicken Mongolian Momo 6 pcs",
+    "price": 140,
+    "category": "Momo",
+    "description": "Tasty momo dish.",
+    "image": "veg-mongolian-momo.jpg"
+  },
+  {
+    "name": "🟢French Fries Regular",
+    "price": 80,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish .",
+    "image": "french-fries-regular.jpg"
+  },
+  {
+    "name": "🟢Veg Finger",
+    "price": 80,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish.",
+    "image": "veg-finger.jpg"
+  },
+  {
+    "name": "🟢Veg Cheesy Finger",
+    "price": 100,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish.",
+    "image": "veg-cheesy-finger.jpg"
+  },
+  {
+    "name": "🔺Chicken Nuggets",
+    "price": 120,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish.",
+    "image": "chicken-nuggets.jpg"
+  },
+  {
+    "name": "🔺Chicken Seekh Kebab",
+    "price": 150,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish.",
+    "image": "chicken-seekh-kebab.jpg"
+  },
+  {
+    "name": "🔺Chicken Cheese Ball",
+    "price": 150,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish.",
+    "image": "chicken-cheese-ball.jpg"
+  },
+  {
+    "name": "🔺Fish Finger",
+    "price": 200,
+    "category": "Nuggets & More",
+    "description": "Tasty nuggets & more dish.",
+    "image": "fish-finger.jpg"
+  },
+  {
+    "name": "🟢Veg Fried Rice",
+    "price": 160,
+    "category": "Rice",
+    "description": "A delicious rice dish with a variety of vegetables and spices, making it a flavorful and wholesome meal.",
+    "image": "veg-fried-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Schezwan Fried Rice",
+    "price": 170,
+    "category": "Rice",
+    "description": "A delicious fried rice dish, made with a combination of vegetables and a fiery schezwan sauce. A flavorful and spicy dish that is sure to set.",
+    "image": "veg-schezwan-fried-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Burnt Chilly Garlic Fried Rice",
+    "price": 200,
+    "category": "Rice",
+    "description": "Crispy and flavorful, this dish is a classic Chinese dish that is sure to satisfy any hunger. It features a blend of vegetables.",
+    "image": "veg-burnt-chilly-garlic-fried-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Triple Schezwan Fried Rice Gravy Separate",
+    "price": 230,
+    "category": "Rice",
+    "description": "A medley of vegetables cooked in schezwan sauce with a hint of spice, this dish is a flavorful and comforting choice with rice and gravy.",
+    "image": "veg-triple-schezwan-fried-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Korean Rice with Gravy Gravy Separate",
+    "price": 200,
+    "category": "Rice",
+    "description": "Fiery rice topped with spicy red chilli gravy.",
+    "image": "veg-korean-rice-with-gravy.jpg"
+  },
+  {
+    "name": "🟢Veg Manchurian Rice",
+    "price": 220,
+    "category": "Rice",
+    "description": "Wok tossed fried rice with chilli and garlic with gravy.",
+    "image": "veg-manchurian-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Singapore Style Fusion Rice",
+    "price": 220,
+    "category": "Rice",
+    "description": "Singapore style rice topped with mildly spiced gravy.",
+    "image": "veg-singarpore-style-fusion-rice.jpg"
+  },
+  {
+    "name": "🟢Veg China Bite Special Rice",
+    "price": 210,
+    "category": "Rice",
+    "description": "A delicious and flavourful rice dish with a rich and aromatic blend of vegetables, served with a hint of spice.",
+    "image": "veg-china-bite-special-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Pot Rice",
+    "price": 240,
+    "category": "Rice",
+    "description": "Served with gravy mushroom, broccoli and celery.",
+    "image": "veg-pot-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Fried Rice",
+    "price": 180,
+    "category": "Rice",
+    "description": "Crispy fried rice with a flavorful blend of chicken, vegetables and aromatic spices. A quintessential Chinese classic with a spicy and aromatic twist.",
+    "image": "chicken-fried-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Schezwan Rice",
+    "price": 190,
+    "category": "Rice",
+    "description": "A flavorful dish made with rice, chicken and vegetables cooked in schezwan sauce, a fiery blend of chilies and spices.",
+    "image": "chicken-schezwan-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Burnt Chilly Garlic Fried Rice",
+    "price": 220,
+    "category": "Rice",
+    "description": "A lip-smacking dish made with fragrant rice, crunchy vegetables, and tender chicken pieces. The dish is coated with a spicy and fragrant sauce that.",
+    "image": "chicken-burnt-chilly-garlic-fried-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Pot Rice",
+    "price": 280,
+    "category": "Rice",
+    "description": "Served with gravy mushroom, broccoli and celery.",
+    "image": "chicken-pot-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken China Bite Special Rice",
+    "price": 240,
+    "category": "Rice",
+    "description": "A non veg dish made with basmati rice, chicken chunks, vegetables and spices.",
+    "image": "chicken-china-bite-special-rice.jpg"
+  },
+  {
+    "name": "🔺Chicken Oriental Rice with Wings",
+    "price": 260,
+    "category": "Rice",
+    "description": "A flavorful rice dish with tender chicken wings and a range of vegetables, perfect for a hearty meal.",
+    "image": "chicken-oriental-rice-with-wings.jpg"
+  },
+  {
+    "name": "🔺Prawns Fried Rice",
+    "price": 220,
+    "category": "Rice",
+    "description": "A spicy and flavorful rice dish with succulent prawns, this dish is a perfect blend of taste and nutrition. The dish is prepared with aromatic spices.",
+    "image": "prawns-fried-rice.jpg"
+  },
+  {
+    "name": "🔺Prawns Schezwan Rice",
+    "price": 230,
+    "category": "Rice",
+    "description": "A flavorful and spicy fried rice dish with juicy prawns and a hint of fiery sichuan peppercorn.",
+    "image": "prawns-schezwan-rice.jpg"
+  },
+  {
+    "name": "🔺Prawns Pot Rice",
+    "price": 290,
+    "category": "Rice",
+    "description": "Served with gravy prawns mushroom, broccoli and celery.",
+    "image": "chicken-pot-rice.jpg"
+  },
+  {
+    "name": "🔺Prawns Korean Fried Rice with Gravy",
+    "price": 290,
+    "category": "Rice",
+    "description": "Crispy, spicy, flavorful and delicious prawns Korean fried rice with a rich, savory gravy. A non spicy, yet flavorful dish.",
+    "image": "prawns-korean-fried-rice.jpg"
+  },
+  {
+    "name": "🔺Egg Fried Rice",
+    "price": 180,
+    "category": "Rice",
+    "description": "A fried rice dish with eggs as the main ingredient, perfect for a quick and filling meal.",
+    "image": "egg-fried-rice.jpg"
+  },  
+  {
+    "name": "🔺Egg Schezwan Fried Rice",
+    "price": 190,
+    "category": "Rice",
+    "description": "A fried rice dish with eggs as the main ingredient sattue with schezwan sauce, perfect for a quick and filling meal.",
+    "image": "egg-schezwan-fried-rice.jpg"
+  },
+  {
+    "name": "🟢Veg Hakka Noodle",
+    "price": 170,
+    "category": "Noodle",
+    "description": "A delectable dish made with a rich and spicy sauce, this Hakka noodle is a must-try for all noodle lovers.",
+    "image": "veg-hakka-noodle.jpg"
+  },
+  {
+    "name": "🟢Veg Schezwan Noodle",
+    "price": 180,
+    "category": "Noodle",
+    "description": "A delectable blend of spicy, tangy and sweet flavours, our Veg schezwan noodles are a delight to your taste buds. The combination of veggies",
+    "image": "veg-schezwan-noodle.jpg"
+  },
+  {
+    "name": "🟢Veg Honkong Noodle",
+    "price": 200,
+    "category": "Noodle",
+    "description": "veggies, wok-fried in a spicy, tangy sauce. Served with a side of noodles",
+    "image": "veg-honkong-noodle.jpg"
+  },
+  {
+    "name": "🟢Veg American Chouspy",
+    "price": 200,
+    "category": "Noodle",
+    "description": "A wholesome and hearty meal that combines a variety of vegetables and spices to create a flavorful dish with fried noodles",
+    "image": "veg-american-choupsy.jpg"
+  },
+  {
+    "name": "🟢Veg Pot Noodle",
+    "price": 240,
+    "category": "Noodle",
+    "description": "A spicy and flavorful noodle dish with a variety of vegetables. This delicious noodle dish is a perfect option for a quick and easy meal",
+    "image": "veg-pot-noodle.jpg"
+  },  
+  {
+    "name": "🔺Egg Hakka Noodle",
+    "price": 190,
+    "category": "Noodle",
+    "description": "all time favorite hakka noodles with egg.",
+    "image": "chicken-hakka-noodle.jpg"
+  },  
+  {
+    "name": "🔺Egg Schezwan Noodle",
+    "price": 200,
+    "category": "Noodle",
+    "description": "noodles with egg and tossed with schezwan sauce meduim spicy.",
+    "image": "egg-schezwan-noodle.jpg"
+  },
+  {
+    "name": "🔺Chicken Hakka Noodle",
+    "price": 180,
+    "category": "Noodle",
+    "description": "Tender chicken pieces in a rich, flavourful Hakka noodle soup. A flavourful bowl of noodles with a hearty, comforting chicken broth.",
+    "image": "chicken-hakka-noodle.jpg"
+  },    
+  {
+    "name": "🔺Chicken Schezwan Noodle",
+    "price": 190,
+    "category": "Noodle",
+    "description": "A perfect combination of tender chicken and mouth-watering Schezuan sauce makes this dish a perfect choice for the hungry diners with the aromatic flavors.",
+    "image": "chicken-schezwan-noodle.jpg"
+  },    
+  {
+    "name": "🔺Chicken Pot Noodle",
+    "price": 280,
+    "category": "Noodle",
+    "description": "Tender chicken pieces cooked in a delicious oriental broth with vegetables and spices, served with a side of steamed rice. A classic comfort food with a twist.",
+    "image": "veg-pot-noodle.jpg"
+  },    
+  {
+    "name": "🔺Chicken Hongkong Noodles",
+    "price": 210,
+    "category": "Noodle",
+    "description": "Crispy chicken, wok-fried in a spicy, tangy sauce. Served with a side of noodles.",
+    "image": "veg-honkong-noodle.jpg"
+  },    
+  {
+    "name": "🔺Chicken American Choupsy",
+    "price": 230,
+    "category": "Noodle",
+    "description": "Crispy chicken chopsuey with a blend of vegetables in a spicy, tangy, and flavorful sauce.",
+    "image": "chicken-american-choupsy.jpg"
+  },    
+  {
+    "name": "🔺Prawns Hakka Noodle",
+    "price": 230,
+    "category": "Noodle",
+    "description": "A flavorful and spicy noodle dish, with prawns, capsicum, and assorted veggies, cooked in a traditional Hakka style.",
+    "image": "prawns-hakka-nodle.jpg"
+  },
+  {
+    "name": "🔺Prawns Schezwan Noodle",
+    "price": 240,
+    "category": "Noodle",
+    "description": "A flavourful and spicy dish made with prawns and noodles in a schezwan sauce. A perfect dish for those who love spicy food.",
+    "image": "prawns-schezwan-noodle.jpg"
+  },
+  {
+    "name": "🔺Prawns Pot Noodle",
+    "price": 290,
+    "category": "Noodle",
+    "description": "A delicious bowl of prawns noodles with a rich flavour, perfect for when you are craving a hearty bowl of noodle soup.",
+    "image": "prawns-pot-noodle.jpg"
+  },
+  {
+    "name": "🔺Chicken Sizzler",
+    "price": 370,
+    "category": "Sizzler",
+    "description": "Rice+Veggies+Fries with Sweet and Spicy Sauce.",
+    "image": "chicken-sizzler.jpg"
+  },
+  {
+    "name": "🟢Paneer Sizzler",
+    "price": 370,
+    "category": "Sizzler",
+    "description": "Rice Noodles+Veggies+Fries with Hot Black Sauce.",
+    "image": "paneer-sizzler.jpg"
+  },
+  {
+    "name": "🟢Assorted Veggies In Black Bean Sauce",
+    "price": 170,
+    "category": "Main Course",
+    "description": "A delicious assortment of vegetables cooked in a flavorful Manchurian gravy, a perfect blend of spicy and tangy flavors.",
+    "image": "assorted-veggies-in-black-bean-sauce.jpg"
+  },
+  {
+    "name": "🟢Vegetable Manchurian Gravy",
+    "price": 170,
+    "category": "Main Course",
+    "description": "Crispy mixed veg balls in tangy manchurian sauc.",
+    "image": "vegetable-manchurian-gravy.jpg"
+  },
+  {
+    "name": "🟢 Vegetable Chilly Gravy",
+    "price": 170,
+    "category": "Main Course",
+    "description": "A delicious blend of seasonal vegetables cooked in a spicy chilli gravy and garnished with fresh coriander. Perfect for the adventurous foodie!",
+    "image": "vegetable-chilly-gravy.jpg"
+  },
+  {
+    "name": "🟢Paneer Manchurian Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "A spicy dish made with paneer and manchurain gravy, which is a perfect combination of flavors.",
+    "image": "paneer-manchurian-gravy.jpg"
+  },
+  {
+    "name": "🟢Paneer Chilly Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "A spicy and flavorful dish made with paneer cubes cooked in a delicious and aromatic chilli gravy. A dish that is sure to tantalize your taste buds.",
+    "image": "paneer-chilly-gravy.jpg"
+  },
+  {
+    "name": "🟢Paneer Hunan Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "Cottage cheese cooked to perfection in traditional hunan sauce.",
+    "image": "paneer-hunan-gravy.jpg"
+  },
+  {
+    "name": "🟢Mix Veg Babycorn Mushroom Hot Black Sauce",
+    "price": 180,
+    "category": "Main Course",
+    "description": "A delectable combination of fresh vegetables and mushrooms cooked in a rich black sauce with a hint of spice. The perfect blend of textures and flavors that will leave.",
+    "image": "mix-veg-babycorn-mushroom.jpg"
+  },
+  {
+    "name": "🔺Chicken Chilli Pepper Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "Sliced chicken stir fried and in black bean sauce and spring onions.",
+    "image": "chicken-chilli-pepper-gravy.jpg"
+  },
+  {
+    "name": "🔺Chicken Red Chilli Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": ".",
+    "image": "chicken-red-chilli-gravy.jpg"
+  },
+  {
+    "name": "🔺Chicken in Hunan Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "Slices of chicken cooked to perfection in traditional hunan sauce.",
+    "image": "chicken-in-hunan-gravy.jpg"
+  },
+  {
+    "name": "🔺Chicken Chilly Basil with Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "Chicken stir fried with basil, chilli and flavoured with black bean sauce.",
+    "image": "chicken-chilly-basil-with-gravy.jpg"
+  },
+  {
+    "name": "🔺Chicken in Chilly Oyster Sauce",
+    "price": 190,
+    "category": "Main Course",
+    "description": "Shredded chicken cooked in oyster flavoured sauce.",
+    "image": "chicken-in-chilly-oyster-sauce.jpg"
+  },
+  {
+    "name": "🔺Chicken Manchurian Gravy",
+    "price": 190,
+    "category": "Main Course",
+    "description": "Deep fried chicken balls, dunked in gravy made of ginger, garlic, coriander, soy and oyster sauce.",
+    "image": "chicken-manchurian-gravy.jpg"
+  },
+  {
+    "name": "🔺Chicken Chilly Gravy",
+    "price": 180,
+    "category": "Main Course",
+    "description": "Chilly ginger garlic capsicum [spicy].",
+    "image": "chicken-chilly-gravy.jpg"
+  },
+  {
+    "name": "🔺Chicken Schezwan Gravy",
+    "price": 180,
+    "category": "Main Course",
+    "description": "Diced chicken and onion, capsicum tossed in our schezwan sauce.",
+    "image": "chicken-schezwan-gravy.jpg"
+  },
+  {
+    "name": "🔺Fish Manchurian Gravy",
+    "price": 240,
+    "category": "Main Course",
+    "description": "Crispy and tangy fish pieces cooked in a spicy gravy with hints of Chinese flavours.",
+    "image": "fish-manchurian-gravy.jpg"
+  },
+  {
+    "name": "🔺Fish Hunan Gravy",
+    "price": 240,
+    "category": "Main Course",
+    "description": "Slices of fish cooked to perfection in traditional hunan sauce.",
+    "image": "fish-hunan-gravy.jpg"
+  },
+  {
+    "name": "🔺Fish Chilly Spring Onion Gravy",
+    "price": 240,
+    "category": "Main Course",
+    "description": "Fish stir fried flavoured with ginger garlic.",
+    "image": "fish-chilly-spring-onion-gravy.jpg"
+  },
+  {
+    "name": "🔺Prawns Manhurian Gravy",
+    "price": 260,
+    "category": "Main Course",
+    "description": "Classic Manchurian Sauce with meduim spicy brown sauce.",
+    "image": "prawns-manchurian-gravy.jpg"
+  },
+  {
+    "name": "🔺Prawns Chilly Basil Gravy",
+    "price": 260,
+    "category": "Main Course",
+    "description": "Prawn stir fried with basil, chilli and flavoured with black bean sauce.",
+    "image": "prawns-chilly-basil-gravy.jpg"
+  },
+  {
+    "name": "🔺Prawns Chilly Gravy",
+    "price": 260,
+    "category": "Main Course",
+    "description": "Meduim spcy chilly garvy.",
+    "image": "prawns-chilly-gravy.jpg"
+  }
+]
+
+
