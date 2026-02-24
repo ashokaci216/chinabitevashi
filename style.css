@@ -1647,6 +1647,14 @@ body {
   cursor:pointer;
 }
 
+/* ===== Mobile: move Vashi slightly left (no header changes) ===== */
+@media (max-width: 480px) {
+  .brand-location{
+    margin-left: 10px;   /* was 14px */
+    padding-left: 10px;  /* was 14px */
+  }
+}
+
 .toast-msg{
   position:fixed;
   left:50%;
