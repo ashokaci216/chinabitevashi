@@ -1714,13 +1714,14 @@ body {
   height: 40px;
 }
 
+/* Brand location alignment tweak */
 .brand-location{
-  margin-left: 0;
+  margin-left: 8px;   /* adjust 6px–10px if needed */
   padding-left: 0;
   border-left: none;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
 }
 
 /* Header padding reduce + Mobile hero boost */
