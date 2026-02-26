@@ -148,7 +148,7 @@ function displayCategories() {
 
   categories.forEach(cat => {
 
-    // 🔴 Hide specific category cards
+      // 🔴 Hide specific category cards
     if (HIDE_CATEGORY_CARDS.has(cat.name)) return;
 
     const div = document.createElement("div");
@@ -737,3 +737,22 @@ document.addEventListener("click", (e) => {
   if (btn.disabled) return;
   addSpecialToCart(id);
 });
+
+/* ==============================
+   Hero Slider Auto Play
+============================== */
+(function(){
+  const slider = document.getElementById("heroSlider");
+  if(!slider) return;
+
+  const slides = slider.querySelectorAll(".slide");
+  if(slides.length < 2) return;
+
+  let index = 0;
+
+  setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 3500);
+})();

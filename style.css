@@ -1677,3 +1677,23 @@ body {
   opacity:1;
   transform:translateX(-50%) translateY(0);
 }
+
+/* ==============================
+   Hero Slider
+============================== */
+.hero-slider { position: relative; overflow: hidden; }
+.hero-slider .slides { position: relative; }
+
+.hero-slider .slide{
+  width:100%;
+  display:block;
+  position:absolute;
+  top:0; left:0;
+  opacity:0;
+  transition:opacity 500ms ease;
+}
+
+.hero-slider .slide.active{
+  opacity:1;
+  position:relative; /* keep height */
+}
