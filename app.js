@@ -24,24 +24,23 @@ const HIDE_CATEGORY_CARDS = new Set(["BOGO", "Meal for 1", "Combo"]);
 
 /* ---------- View helpers (NEW) ---------- */
 function showCategoriesView() {
-  const homeView = document.getElementById("home-view");
+  const categorySection = document.getElementById("category-section");
   const productsView = document.getElementById("products-view");
   const menuSection = document.getElementById("menu-section");
-  if (homeView) homeView.classList.remove("hidden");
+  if (categorySection) categorySection.classList.remove("hidden");
   if (productsView) productsView.classList.add("hidden");
   if (menuSection) menuSection.classList.add("hidden");
   document.getElementById("home-floating-btn").classList.add("hidden");
 }
 
 function showProductsView() {
-  const homeView = document.getElementById("home-view");
+  const categorySection = document.getElementById("category-section");
   const productsView = document.getElementById("products-view");
   const menuSection = document.getElementById("menu-section");
-  if (homeView) homeView.classList.add("hidden");
+  if (categorySection) categorySection.classList.add("hidden");
   if (productsView) productsView.classList.remove("hidden");
   if (menuSection) menuSection.classList.remove("hidden");
   document.getElementById("home-floating-btn").classList.remove("hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function checkOutletStatus() {
@@ -118,7 +117,7 @@ window.onload = () => {
 
   // Keep Home state as default.
   if (!history.state || history.state.view !== "categories") {
-    history.replaceState({ view: "categories" }, "", "#categories");
+    history.replaceState({ view: "categories" }, "", location.pathname);
   }
 
   // Only open products from a valid deep-link hash.
@@ -129,7 +128,7 @@ window.onload = () => {
   if (!isHomeHash && validCategoryNames.has(hashCat)) {
     showProductsView();
     renderForCategory(hashCat);
-    history.replaceState({ view: "products", cat: hashCat }, "", `#${encodeURIComponent(hashCat)}`);
+    history.replaceState({ view: "products", cat: hashCat }, "", location.pathname);
   }
 
   checkOutletStatus();
@@ -137,8 +136,7 @@ window.onload = () => {
 
 document.getElementById("home-floating-btn").onclick = () => {
   showCategoriesView();
-  history.replaceState({ view: "categories" }, "", "#categories");
-  document.getElementById("categories").scrollIntoView({ behavior: "smooth", block: "start" });
+  history.replaceState({ view: "categories" }, "", location.pathname);
 };
 
 /* ---------- Categories ---------- */
@@ -165,7 +163,7 @@ function displayCategories() {
 /* ---------- Open Category (MODIFIED) ---------- */
 function openCategory(categoryName) {
   // Push a history state so phone back button returns here
-  history.pushState({ view: "products", cat: categoryName }, "", `#${encodeURIComponent(categoryName)}`);
+  history.pushState({ view: "products", cat: categoryName }, "", location.pathname);
   showProductsView();
   renderForCategory(categoryName);
 }
@@ -347,13 +345,8 @@ function setupCartButtons() {
   history.replaceState(
     { view: "categories" },
     "",
-    "#categories"
+    location.pathname
   );
-
-  document.getElementById("categories").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
 };
 
   document.getElementById("whatsapp-order").onclick = () => {
