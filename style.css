@@ -576,6 +576,10 @@ body > * {
   display: none !important;
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 /* === Category Grid (3 per row on mobile, limited on desktop) === */
 .category-grid {
   display: grid !important;
@@ -1737,6 +1741,18 @@ body {
 .hero-slider .slide.active{
   opacity:1;
   position:relative; /* keep height */
+}
+
+/* Desktop Hero Height Control */
+@media (min-width: 1024px) {
+  .hero-slider {
+    height: 420px;
+  }
+
+  .hero-slider .slide {
+    height: 420px;
+    object-fit: cover;
+  }
 }
 
 /* Header brand stacked + hero safe offset */

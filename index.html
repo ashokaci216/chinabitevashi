@@ -449,8 +449,20 @@
     <button id="clear-cart" class="clear-cart-btn">Clear Cart</button>
 
     <div class="order-fields">
-      <input type="text" id="name-and-phone-number" placeholder="Name and Phone Number">
+      <input type="text" id="name-and-phone-number" placeholder="Name">
+      <input type="text" id="phone-number" placeholder="Phone Number">
       <input type="text" id="table-number-or-address" placeholder="Table Number or Address">
+    </div>
+
+    <div class="payment-methods">
+      <label>
+        <input type="radio" name="payment-method" value="Cash" checked>
+        Cash
+      </label>
+      <label>
+        <input type="radio" name="payment-method" value="UPI">
+        UPI
+      </label>
     </div>
 
     <a id="whatsapp-order" target="_blank" class="whatsapp-btn">Place Order via WhatsApp</a>

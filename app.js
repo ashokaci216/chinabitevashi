@@ -27,20 +27,22 @@ function showCategoriesView() {
   const categorySection = document.getElementById("category-section");
   const productsView = document.getElementById("products-view");
   const menuSection = document.getElementById("menu-section");
-  if (categorySection) categorySection.classList.remove("hidden");
-  if (productsView) productsView.classList.add("hidden");
-  if (menuSection) menuSection.classList.add("hidden");
-  document.getElementById("home-floating-btn").classList.add("hidden");
+  if (categorySection) categorySection.classList.remove("hidden", "is-hidden");
+  if (productsView) productsView.classList.add("hidden", "is-hidden");
+  if (menuSection) menuSection.classList.add("hidden", "is-hidden");
+  const list = document.getElementById("product-list");
+  if (list) list.innerHTML = "";
+  document.getElementById("home-floating-btn").classList.add("hidden", "is-hidden");
 }
 
 function showProductsView() {
   const categorySection = document.getElementById("category-section");
   const productsView = document.getElementById("products-view");
   const menuSection = document.getElementById("menu-section");
-  if (categorySection) categorySection.classList.add("hidden");
-  if (productsView) productsView.classList.remove("hidden");
-  if (menuSection) menuSection.classList.remove("hidden");
-  document.getElementById("home-floating-btn").classList.remove("hidden");
+  if (categorySection) categorySection.classList.add("hidden", "is-hidden");
+  if (productsView) productsView.classList.remove("hidden", "is-hidden");
+  if (menuSection) menuSection.classList.remove("hidden", "is-hidden");
+  document.getElementById("home-floating-btn").classList.remove("hidden", "is-hidden");
 }
 
 function checkOutletStatus() {
@@ -166,6 +168,10 @@ function openCategory(categoryName) {
   history.pushState({ view: "products", cat: categoryName }, "", location.pathname);
   showProductsView();
   renderForCategory(categoryName);
+  const menuSection = document.getElementById("menu-section");
+  if (menuSection) {
+    menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 /* ---------- Product rendering (unchanged) ---------- */
@@ -372,9 +378,10 @@ function setupCartButtons() {
     }
 
     const name = document.getElementById("name-and-phone-number").value;
+    const phone = document.getElementById("phone-number").value;
     const address = document.getElementById("table-number-or-address").value;
-    if (!name || !address) {
-      alert("Please fill in your name and address.");
+    if (!name || !phone || !address) {
+      alert("Please fill in your name, phone number and address.");
       return;
     }
     let message = `Order from China Bite\n`;
@@ -387,7 +394,8 @@ function setupCartButtons() {
     message += `\nDiscount: -${RUPEE}${formatMoney(totals.discount)}`;
     message += `\nDelivery: ${RUPEE}${formatMoney(totals.delivery)}`;
     message += `\nGrand Total: ${RUPEE}${formatMoney(totals.total)}`;
-    message += `\n\nName: ${name}\nAddress: ${address}`;
+    const payment = document.querySelector("input[name='payment-method']:checked")?.value || "Cash";
+    message += `\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}`;
 
     const instruction = document.getElementById("cooking-instructions").value;
     if (instruction) {
@@ -405,6 +413,7 @@ function setupCartButtons() {
       document.getElementById("cart-panel").classList.remove("active");
       document.getElementById("name-and-phone-number").value = "";
       document.getElementById("table-number-or-address").value = "";
+      document.getElementById("phone-number").value = "";
       renderProducts();
     }, 500);
   };
