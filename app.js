@@ -170,7 +170,7 @@ function openCategory(categoryName) {
 
 /* ---------- Product rendering (unchanged) ---------- */
 function renderProducts() {
-  const list = document.getElementById("product-list");
+  const list = getCategoryProductList();
   list.innerHTML = "";
   allProducts.forEach(product => {
     const card = document.createElement("div");
@@ -198,6 +198,22 @@ function renderProducts() {
 `;
     list.appendChild(card);
   });
+}
+
+function getCategoryProductList() {
+  const productsView = document.getElementById("products-view");
+  if (!productsView) return document.getElementById("product-list");
+
+  let list = productsView.querySelector(".product-list");
+  if (!list) {
+    const menuSection = productsView.querySelector("#menu-section") || productsView;
+    list = document.createElement("div");
+    list.id = "product-list";
+    list.className = "product-list";
+    menuSection.appendChild(list);
+  }
+
+  return list;
 }
 
 function changeQty(name, delta) {
