@@ -22,6 +22,11 @@ const categories = [
 
 const HIDE_CATEGORY_CARDS = new Set(["BOGO", "Meal for 1", "Combo"]);
 
+// ==============================
+// Google Sheet Orders Web App URL
+// ==============================
+const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwAc0qCDLzlSI7sdSlDlc79eX6hrwzDlXhbkZeMO2k2KMgUa_BxCwK56ICvjapjAm6Ifg/exec";
+
 /* ---------- View helpers (NEW) ---------- */
 function showCategoriesView() {
   const categorySection = document.getElementById("category-section");
@@ -402,6 +407,35 @@ function setupCartButtons() {
       message += `\n\nInstructions: ${instruction}`;
     }
 
+    // ==============================
+// Save order to Google Sheet (NO parsing WhatsApp text)
+// ==============================
+
+// Items summary (single line with |) - matches WhatsApp line total style
+const itemsSummary = Object.values(cart)
+  .map(item => `${item.qty}x ${item.name} - ${RUPEE}${formatMoney(item.qty * item.price)}`)
+  .join(" | ");
+
+// Total items count
+const totalItems = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+
+// Send to sheet using your existing variables
+sendOrderToGoogleSheet({
+  name: name.trim(),
+  phone: phone.trim(),
+  addressRaw: address.trim(),
+  instructions: (instruction || "").trim(),
+  paymentMethod: payment,
+
+  subtotal: totals.subtotalAll,
+  discount: totals.discount,
+  deliveryFee: totals.delivery,
+  grandTotal: totals.total,
+
+  totalItems,
+  itemsSummary
+});
+
     const encoded = encodeURIComponent(message);
     document.getElementById("whatsapp-order").href = `https://wa.me/918104193919?text=${encoded}`;
 
@@ -774,3 +808,15 @@ document.addEventListener("click", (e) => {
     slides[index].classList.add("active");
   }, 3500);
 })();
+
+// ==============================
+// Send Order to Google Sheet
+// ==============================
+function sendOrderToGoogleSheet(payload) {
+  fetch(SHEETS_WEBAPP_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).catch(() => {});
+}
