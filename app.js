@@ -2,6 +2,7 @@
 
 let cart = {};
 let allProducts = [];
+let menuItems = [];
 const RUPEE = "\u20B9";
 let isOutletOpen = true;
 
@@ -28,26 +29,88 @@ const HIDE_CATEGORY_CARDS = new Set(["BOGO", "Meal for 1", "Combo"]);
 const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwAc0qCDLzlSI7sdSlDlc79eX6hrwzDlXhbkZeMO2k2KMgUa_BxCwK56ICvjapjAm6Ifg/exec";
 
 /* ---------- View helpers (NEW) ---------- */
+const HOME_SECTION_SELECTORS = ["#home-content"];
+
+function setElementHidden(element, shouldHide) {
+  if (!element) return;
+  element.hidden = shouldHide;
+  element.classList.toggle("hidden", shouldHide);
+  element.classList.toggle("is-hidden", shouldHide);
+  if (shouldHide) {
+    element.style.setProperty("display", "none", "important");
+  } else {
+    element.style.removeProperty("display");
+  }
+}
+
+function setHomeContentVisible(shouldShow) {
+  HOME_SECTION_SELECTORS.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      setElementHidden(element, !shouldShow);
+    });
+  });
+}
+
+function clearSearchResults() {
+  const searchInput = document.getElementById("menu-search");
+  const resultsContainer = document.getElementById("search-results");
+  const messageEl = document.getElementById("search-message");
+
+  if (searchInput) searchInput.value = "";
+  if (resultsContainer) {
+    resultsContainer.innerHTML = "";
+    setElementHidden(resultsContainer, true);
+  }
+  if (messageEl) {
+    messageEl.textContent = "";
+    setElementHidden(messageEl, true);
+  }
+}
+
+function scrollToCategoryHome() {
+  const categorySection = document.getElementById("category-section");
+  const searchSection = document.querySelector(".search-section");
+  const target = categorySection || searchSection;
+  if (target) {
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
+function scrollToProductsView() {
+  const menuSection = document.getElementById("menu-section");
+  if (menuSection) {
+    requestAnimationFrame(() => {
+      menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
 function showCategoriesView() {
   const categorySection = document.getElementById("category-section");
   const productsView = document.getElementById("products-view");
   const menuSection = document.getElementById("menu-section");
-  if (categorySection) categorySection.classList.remove("hidden", "is-hidden");
-  if (productsView) productsView.classList.add("hidden", "is-hidden");
-  if (menuSection) menuSection.classList.add("hidden", "is-hidden");
+  setHomeContentVisible(true);
+  clearSearchResults();
+  setElementHidden(categorySection, false);
+  setElementHidden(productsView, true);
+  setElementHidden(menuSection, true);
   const list = document.getElementById("product-list");
   if (list) list.innerHTML = "";
-  document.getElementById("home-floating-btn").classList.add("hidden", "is-hidden");
+  setElementHidden(document.getElementById("home-floating-btn"), true);
 }
 
 function showProductsView() {
   const categorySection = document.getElementById("category-section");
   const productsView = document.getElementById("products-view");
   const menuSection = document.getElementById("menu-section");
-  if (categorySection) categorySection.classList.add("hidden", "is-hidden");
-  if (productsView) productsView.classList.remove("hidden", "is-hidden");
-  if (menuSection) menuSection.classList.remove("hidden", "is-hidden");
-  document.getElementById("home-floating-btn").classList.remove("hidden", "is-hidden");
+  clearSearchResults();
+  setElementHidden(productsView, false);
+  setElementHidden(menuSection, false);
+  setElementHidden(categorySection, true);
+  setHomeContentVisible(false);
+  setElementHidden(document.getElementById("home-floating-btn"), false);
 }
 
 function checkOutletStatus() {
@@ -92,12 +155,122 @@ function checkOutletStatus() {
 // Render products for a given category WITHOUT pushing history (NEW)
 function renderForCategory(categoryName) {
   document.getElementById("menu-heading").textContent = categoryName;
-  fetch("menu.json")
+  const useMenuData = (data) => {
+    allProducts = data.filter(item => item.category === categoryName);
+    renderProducts();
+    return allProducts;
+  };
+
+  if (menuItems.length) {
+    return Promise.resolve(useMenuData(menuItems));
+  }
+
+  return fetch("menu.json")
     .then(res => res.json())
     .then(data => {
-      allProducts = data.filter(item => item.category === categoryName);
+      menuItems = data || [];
+      return useMenuData(menuItems);
+    })
+    .catch(() => {
+      allProducts = [];
       renderProducts();
+      return allProducts;
     });
+}
+
+function findMenuItemByName(name) {
+  return allProducts.find(p => p.name === name) ||
+    menuItems.find(p => p.name === name) ||
+    Object.values(cart).find(p => p.name === name);
+}
+
+function initializeMenuSearch() {
+  const searchInput = document.getElementById("menu-search");
+  const resultsContainer = document.getElementById("search-results");
+  const messageEl = document.getElementById("search-message");
+  if (!searchInput || !resultsContainer || !messageEl) return;
+
+  const updateResults = () => {
+    const query = searchInput.value.trim();
+    if (!query) {
+      setElementHidden(resultsContainer, true);
+      resultsContainer.innerHTML = "";
+      messageEl.textContent = "";
+      setElementHidden(messageEl, true);
+      return;
+    }
+
+    if (!menuItems.length) {
+      messageEl.textContent = "Loading results...";
+      setElementHidden(messageEl, false);
+      setElementHidden(resultsContainer, false);
+      return;
+    }
+
+    const term = query.toLowerCase();
+    const matches = menuItems.filter(item => {
+      const name = (item.name || "").toLowerCase();
+      const category = (item.category || "").toLowerCase();
+      const description = (item.description || "").toLowerCase();
+      return name.includes(term) || category.includes(term) || description.includes(term);
+    });
+
+    renderSearchResults(matches, query);
+  };
+
+  searchInput.addEventListener("input", updateResults);
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      searchInput.value = "";
+      updateResults();
+    }
+  });
+}
+
+function renderSearchResults(results, query) {
+  const resultsContainer = document.getElementById("search-results");
+  const messageEl = document.getElementById("search-message");
+  if (!resultsContainer || !messageEl) return;
+  resultsContainer.innerHTML = "";
+
+  if (!results.length) {
+    messageEl.textContent = `No items found for "${query}"`;
+    setElementHidden(messageEl, false);
+    setElementHidden(resultsContainer, true);
+    return;
+  }
+
+  messageEl.textContent = `${results.length} item${results.length === 1 ? "" : "s"} found`;
+  setElementHidden(messageEl, false);
+  setElementHidden(resultsContainer, false);
+
+  results.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "search-result-card";
+    card.innerHTML = `
+      <div class="search-result-copy">
+        <span class="search-result-title">${product.name}</span>
+        <div class="search-result-meta">
+          <span>${product.category}</span>
+          <span>&#8377;${product.price}</span>
+        </div>
+        <p class="search-result-desc">${product.description || ""}</p>
+      </div>
+      <button type="button" class="search-add-btn">ADD</button>
+    `;
+
+    const addBtn = card.querySelector(".search-add-btn");
+    if (addBtn) {
+      addBtn.addEventListener("click", () => {
+        const item = findMenuItemByName(product.name);
+        if (!item) return;
+        changeQty(product.name, 1);
+        updateCart();
+      });
+    }
+
+    resultsContainer.appendChild(card);
+  });
 }
 
 /* ---------- App init (MODIFIED) ---------- */
@@ -110,6 +283,13 @@ window.onload = () => {
   }, 3000);
 
   displayCategories();
+
+  fetch("menu.json")
+    .then(res => res.json())
+    .then(data => { menuItems = data || []; })
+    .catch(() => { menuItems = []; });
+
+  initializeMenuSearch();
 
   const savedCart = localStorage.getItem('chinaCart');
   if (savedCart) {
@@ -133,9 +313,11 @@ window.onload = () => {
   const isHomeHash = !hashCat || hashCat.toLowerCase() === "categories";
 
   if (!isHomeHash && validCategoryNames.has(hashCat)) {
-    showProductsView();
-    renderForCategory(hashCat);
-    history.replaceState({ view: "products", cat: hashCat }, "", location.pathname);
+    renderForCategory(hashCat).then(() => {
+      showProductsView();
+      scrollToProductsView();
+      history.replaceState({ view: "products", cat: hashCat }, "", location.pathname);
+    });
   }
 
   checkOutletStatus();
@@ -143,6 +325,7 @@ window.onload = () => {
 
 document.getElementById("home-floating-btn").onclick = () => {
   showCategoriesView();
+  scrollToCategoryHome();
   history.replaceState({ view: "categories" }, "", location.pathname);
 };
 
@@ -171,12 +354,10 @@ function displayCategories() {
 function openCategory(categoryName) {
   // Push a history state so phone back button returns here
   history.pushState({ view: "products", cat: categoryName }, "", location.pathname);
-  showProductsView();
-  renderForCategory(categoryName);
-  const menuSection = document.getElementById("menu-section");
-  if (menuSection) {
-    menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  renderForCategory(categoryName).then(() => {
+    showProductsView();
+    scrollToProductsView();
+  });
 }
 
 /* ---------- Product rendering (unchanged) ---------- */
@@ -228,7 +409,7 @@ function getCategoryProductList() {
 }
 
 function changeQty(name, delta) {
-  const item = allProducts.find(p => p.name === name) || Object.values(cart).find(p => p.name === name);
+  const item = findMenuItemByName(name);
   if (!item) return;
 
   if (!cart[name]) cart[name] = { ...item, qty: 0 };
@@ -367,14 +548,15 @@ function setupCartButtons() {
   };
 
   document.getElementById("back-to-categories").onclick = () => {
-  showCategoriesView();  // your existing function
+    showCategoriesView();
+    scrollToCategoryHome();
 
-  history.replaceState(
-    { view: "categories" },
-    "",
-    location.pathname
-  );
-};
+    history.replaceState(
+      { view: "categories" },
+      "",
+      location.pathname
+    );
+  };
 
   document.getElementById("whatsapp-order").onclick = () => {
     if (!isOutletOpen) {
@@ -480,11 +662,14 @@ window.addEventListener("popstate", (event) => {
   const st = event.state;
   if (st && st.view === "products" && st.cat) {
     // Return to that category's products (no extra push)
-    showProductsView();
-    renderForCategory(st.cat);
+    renderForCategory(st.cat).then(() => {
+      showProductsView();
+      scrollToProductsView();
+    });
   } else {
     // Back to categories/home
     showCategoriesView();
+    scrollToCategoryHome();
     // Optional: clean the URL hash so a second back closes the tab/app
     if (location.hash) {
       history.replaceState({ view: "categories" }, "", location.pathname);
@@ -820,3 +1005,51 @@ function sendOrderToGoogleSheet(payload) {
     body: JSON.stringify(payload),
   }).catch(() => {});
 }
+
+/* ==============================
+   Floating Scroll Arrows
+============================== */
+document.addEventListener("DOMContentLoaded", () => {
+  const upBtn = document.getElementById("scroll-up-btn");
+  const downBtn = document.getElementById("scroll-down-btn");
+  const setArrowState = (visibleButton) => {
+    if (upBtn) upBtn.classList.toggle("is-hidden", visibleButton !== upBtn);
+    if (downBtn) downBtn.classList.toggle("is-hidden", visibleButton !== downBtn);
+  };
+  const updateArrowVisibility = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = scrollable > 0 ? window.scrollY / scrollable : 0;
+
+    if (scrollPercent <= 0.08) {
+      setArrowState(null);
+    } else if (scrollPercent < 0.7) {
+      setArrowState(downBtn);
+    } else {
+      setArrowState(upBtn);
+    }
+  };
+
+  if (upBtn) {
+    upBtn.addEventListener("click", () => {
+      const hero = document.querySelector(".hero") || document.getElementById("heroSlider");
+      if (hero) {
+        hero.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  }
+
+  if (downBtn) {
+    downBtn.addEventListener("click", () => {
+      const target = document.querySelector(".search-section") || document.getElementById("category-section");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+
+  updateArrowVisibility();
+  window.addEventListener("scroll", updateArrowVisibility, { passive: true });
+  window.addEventListener("resize", updateArrowVisibility);
+});
