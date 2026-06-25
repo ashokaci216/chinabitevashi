@@ -297,6 +297,7 @@ window.onload = () => {
   }
 
   setupCartButtons();
+  initializeComboCards();
   updateCart();
 
   // Default first screen is Home flow.
@@ -636,26 +637,189 @@ sendOrderToGoogleSheet({
 }
 
 /* ---------- Preview modal (unchanged) ---------- */
+function closePreviewModal() {
+  const modal = document.getElementById("preview-modal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+
+function setComboModalMode(isCombo) {
+  const modalContent = document.querySelector("#preview-modal .modal-content");
+  const comboList = document.getElementById("modal-combo-list");
+  const regularAddBtn = document.getElementById("modal-add-to-cart");
+  const comboAddBtn = document.getElementById("modal-combo-add");
+  const backLink = document.getElementById("back-to-menu");
+
+  if (modalContent) modalContent.classList.toggle("is-combo", isCombo);
+  if (comboList) {
+    comboList.classList.toggle("hidden", !isCombo);
+    comboList.innerHTML = "";
+  }
+  if (regularAddBtn) regularAddBtn.classList.toggle("hidden", isCombo);
+  if (comboAddBtn) {
+    comboAddBtn.classList.toggle("hidden", !isCombo);
+    if (!isCombo) comboAddBtn.removeAttribute("data-id");
+  }
+  if (backLink) {
+    backLink.textContent = isCombo ? "Close" : "\u2190 Back to Menu";
+    backLink.setAttribute("href", isCombo ? "#" : "#menu-section");
+  }
+}
+
 function openPreview(name) {
   const item = allProducts.find(p => p.name === name);
   if (!item) return;
+  setComboModalMode(false);
   document.getElementById("modal-image").src = `images/${item.image}`;
   document.getElementById("modal-name").textContent = item.name;
   document.getElementById("modal-description").textContent = item.description;
   document.getElementById("modal-price").textContent = `${RUPEE}${item.price}`;
   document.getElementById("preview-modal").classList.remove("hidden");
+  document.body.classList.add("modal-open");
   document.getElementById("modal-add-to-cart").onclick = () => {
     changeQty(name, 1);
-    document.getElementById("preview-modal").classList.add("hidden");
+    closePreviewModal();
   };
   document.getElementById("close-modal").onclick = () => {
-    document.getElementById("preview-modal").classList.add("hidden");
+    closePreviewModal();
   };
   document.getElementById("back-to-menu").onclick = (e) => {
     e.preventDefault();
-    document.getElementById("preview-modal").classList.add("hidden");
+    closePreviewModal();
   };
 }
+
+function cleanComboSummaryText(text) {
+  return (text || "").replace(/\s*\([^)]*\)/g, "").replace(/\s+/g, " ").trim();
+}
+
+function getComboDetails(card) {
+  if (!card) return null;
+  const id = card.dataset.id;
+  const special = specialMenuItems[id];
+  const image = card.querySelector(".combo-img");
+  const title = card.querySelector(".combo-title")?.textContent.trim() || special?.name || "";
+  const description = card.querySelector(".combo-desc")?.textContent.trim() || "";
+  const items = Array.from(card.querySelectorAll(":scope > .combo-list li"))
+    .map((li) => li.textContent.trim())
+    .filter(Boolean);
+
+  return {
+    id,
+    name: title,
+    price: special?.price || 0,
+    imageSrc: image?.getAttribute("src") || "",
+    imageAlt: image?.getAttribute("alt") || title,
+    description,
+    items
+  };
+}
+
+function openComboPreview(id) {
+  const card = document.querySelector(`.combo-card[data-id="${id}"]`);
+  const details = getComboDetails(card);
+  if (!details || !specialMenuItems[id]) return;
+
+  setComboModalMode(true);
+
+  const modal = document.getElementById("preview-modal");
+  const modalImage = document.getElementById("modal-image");
+  const comboList = document.getElementById("modal-combo-list");
+  const comboAddBtn = document.getElementById("modal-combo-add");
+
+  modalImage.src = details.imageSrc;
+  modalImage.alt = details.imageAlt;
+  modalImage.onerror = () => {
+    modalImage.removeAttribute("src");
+    modalImage.alt = "Combo image unavailable";
+  };
+
+  document.getElementById("modal-name").textContent = details.name;
+  document.getElementById("modal-description").textContent = "";
+  document.getElementById("modal-price").textContent = `${RUPEE}${details.price}`;
+
+  if (comboList) comboList.innerHTML = "";
+
+  if (comboAddBtn) {
+    comboAddBtn.dataset.id = id;
+    comboAddBtn.dataset.type = "combo";
+    renderSpecialBtn(comboAddBtn, id);
+  }
+
+  modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+}
+
+function initializeComboCards() {
+  document.querySelectorAll(".combo-card").forEach((card) => {
+    const title = card.querySelector(".combo-title");
+    const list = card.querySelector(":scope > .combo-list");
+    const image = card.querySelector(".combo-img");
+    const imageWrap = card.querySelector(".combo-img-wrap");
+
+    if (title && list && !card.querySelector(":scope > .combo-summary")) {
+      const summary = document.createElement("ul");
+      summary.className = "combo-summary";
+      Array.from(list.querySelectorAll("li")).forEach((li) => {
+        const shortText = cleanComboSummaryText(li.textContent);
+        if (!shortText) return;
+        const item = document.createElement("li");
+        item.textContent = shortText;
+        summary.appendChild(item);
+      });
+      title.insertAdjacentElement("afterend", summary);
+    }
+
+    if (!image || image.dataset.comboBound === "1") return;
+    image.dataset.comboBound = "1";
+    image.setAttribute("role", "button");
+    image.setAttribute("tabindex", "0");
+    image.setAttribute("aria-label", `View ${title?.textContent.trim() || "combo"} details`);
+    image.addEventListener("click", () => openComboPreview(card.dataset.id));
+    image.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openComboPreview(card.dataset.id);
+      }
+    });
+    image.addEventListener("error", () => {
+      if (imageWrap) imageWrap.classList.add("is-missing");
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("preview-modal");
+  if (modal && modal.dataset.overlayBound !== "1") {
+    modal.dataset.overlayBound = "1";
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closePreviewModal();
+    });
+  }
+
+  const closeModal = document.getElementById("close-modal");
+  if (closeModal && closeModal.dataset.boundClick !== "1") {
+    closeModal.dataset.boundClick = "1";
+    closeModal.addEventListener("click", closePreviewModal);
+  }
+
+  const backLink = document.getElementById("back-to-menu");
+  if (backLink && backLink.dataset.boundClick !== "1") {
+    backLink.dataset.boundClick = "1";
+    backLink.addEventListener("click", (event) => {
+      const activeModal = document.getElementById("preview-modal");
+      if (activeModal && !activeModal.classList.contains("hidden")) {
+        event.preventDefault();
+        closePreviewModal();
+      }
+    });
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closePreviewModal();
+});
 
 /* ---------- Phone back / Browser back handler (NEW) ---------- */
 window.addEventListener("popstate", (event) => {
@@ -712,7 +876,7 @@ function calculateCartTotals() {
     }
   }
 
-  const discount = eligibleSubtotal > 250 ? eligibleSubtotal * 0.20 : 0;
+  const discount = eligibleSubtotal > 250 ? eligibleSubtotal * 0.15 : 0;
   const payableSubtotal = subtotalAll - discount;
   const delivery = payableSubtotal < 300 ? 50 : 0;
   const total = payableSubtotal + delivery;

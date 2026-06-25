@@ -24,8 +24,8 @@
 <meta property="og:url" content="https://chinabite.in/v2/">
 <meta property="og:image" content="https://chinabite.in/v2/images/china-logo.png">
 
-<link rel="stylesheet" href="style.css?v=2026-06-25-5">
-<script defer src="app.js?v=2026-06-25-5"></script>
+<link rel="stylesheet" href="style.css?v=2026-06-25-6">
+<script defer src="app.js?v=2026-06-25-6"></script>
 <meta name="theme-color" content="#e53935">
 <link rel="apple-touch-icon" href="images/favicon-192x192.png">
 
@@ -182,7 +182,7 @@
  <div class="offer-strip">
    <div class="offer-track">
      Free Delivery above ₹400* &nbsp;&nbsp; • &nbsp;&nbsp;
-     Flat 20% OFF above ₹300* &nbsp;&nbsp; • &nbsp;&nbsp;
+     Flat 15% OFF above ₹300* &nbsp;&nbsp; • &nbsp;&nbsp;
      30–40% OFF on Today’s Special* &nbsp;&nbsp; • &nbsp;&nbsp;
      Offers valid only on website orders &nbsp;&nbsp; • &nbsp;&nbsp;
      No combinable offers
@@ -278,7 +278,6 @@
         <div class="combo-badges">
           <span class="pill pill-veg">VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -303,7 +302,6 @@
         <div class="combo-badges">
           <span class="pill pill-veg">VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -328,7 +326,6 @@
         <div class="combo-badges">
           <span class="pill pill-veg">VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -352,7 +349,6 @@
       <div class="combo-header">
         <div class="combo-badges">
           <span class="pill pill-veg">VEG</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -376,7 +372,6 @@
         <div class="combo-badges">
           <span class="pill pill-nonveg">NON-VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -401,7 +396,6 @@
         <div class="combo-badges">
           <span class="pill pill-nonveg">NON-VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -426,7 +420,6 @@
         <div class="combo-badges">
           <span class="pill pill-nonveg">NON-VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -451,7 +444,6 @@
         <div class="combo-badges">
           <span class="pill pill-nonveg">NON-VEG</span>
           <span class="pill pill-drink">WITH DRINK</span>
-          <span class="pill pill-single">MEAL FOR 1</span>
         </div>
         <span class="combo-serve">Serves 1</span>
       </div>
@@ -474,7 +466,7 @@
     <article class="combo-card" data-id="combo-family-1">
       <div class="combo-header">
         <div class="combo-badges">
-          <span class="pill pill-family">★ Best Value Combos</span>
+          <span class="pill pill-family">FAMILY COMBO</span>
           <span class="pill pill-best">BEST VALUE</span>
         </div>
         <span class="combo-serve">Serves 3-4</span>
@@ -499,7 +491,7 @@
     <article class="combo-card" data-id="combo-family-2">
       <div class="combo-header">
         <div class="combo-badges">
-          <span class="pill pill-family">★ Best Value Combos</span>
+          <span class="pill pill-family">FAMILY COMBO</span>
           <span class="pill pill-best">CHEF SELECT</span>
         </div>
         <span class="combo-serve">Serves 3-4</span>
@@ -512,7 +504,7 @@
         <li>Chicken Triple Rice</li>
         <li>Schezwan Noodles</li>
         <li>Chilli Chicken Dry</li>
-        <li>Manchurian Chicken Gravy</li>
+        <li>Chicken Manchurian Gravy</li>
       </ul>
       <p class="combo-desc">Flavorful family platter with noodles, rice and chicken specialties.</p>
       <div class="combo-bottom">
@@ -598,9 +590,11 @@
       <button id="close-modal" class="close-modal">&times;</button>
       <img id="modal-image" src="" alt="Preview">
       <h3 id="modal-name"></h3>
+      <ul id="modal-combo-list" class="modal-combo-list hidden"></ul>
       <p id="modal-description"></p>
       <p id="modal-price"></p>
       <button id="modal-add-to-cart">+ Add to Cart</button>
+      <button id="modal-combo-add" class="btn-add modal-combo-add hidden" type="button" data-type="combo">ADD</button>
       <a href="#menu-section" id="back-to-menu" class="back-link">&larr; Back to Menu</a>
     </div>
   </div>
