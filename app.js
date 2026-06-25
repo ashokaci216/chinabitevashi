@@ -1010,44 +1010,56 @@ function sendOrderToGoogleSheet(payload) {
    Floating Scroll Arrows
 ============================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const upBtn = document.getElementById("scroll-up-btn");
-  const downBtn = document.getElementById("scroll-down-btn");
-  const setArrowState = (visibleButton) => {
-    if (upBtn) upBtn.classList.toggle("is-hidden", visibleButton !== upBtn);
-    if (downBtn) downBtn.classList.toggle("is-hidden", visibleButton !== downBtn);
+  const arrowBtn = document.getElementById("scroll-arrow-btn");
+  if (!arrowBtn) return;
+
+  let arrowMode = "hidden";
+
+  const setArrowMode = (mode) => {
+    arrowMode = mode;
+    arrowBtn.classList.toggle("is-hidden", mode === "hidden");
+    arrowBtn.textContent = mode === "up" ? "↑" : "↓";
+    arrowBtn.setAttribute("aria-label", mode === "up" ? "Scroll to top" : "Scroll down");
   };
+
   const updateArrowVisibility = () => {
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = scrollable > 0 ? window.scrollY / scrollable : 0;
 
     if (scrollPercent <= 0.08) {
-      setArrowState(null);
+      setArrowMode("hidden");
     } else if (scrollPercent < 0.7) {
-      setArrowState(downBtn);
+      setArrowMode("down");
     } else {
-      setArrowState(upBtn);
+      setArrowMode("up");
     }
   };
 
-  if (upBtn) {
-    upBtn.addEventListener("click", () => {
+  arrowBtn.addEventListener("click", () => {
+    if (arrowMode === "up") {
       const hero = document.querySelector(".hero") || document.getElementById("heroSlider");
       if (hero) {
         hero.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    });
-  }
+      return;
+    }
 
-  if (downBtn) {
-    downBtn.addEventListener("click", () => {
-      const target = document.querySelector(".search-section") || document.getElementById("category-section");
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }
+    const menuSection = document.getElementById("menu-section");
+    const productsView = document.getElementById("products-view");
+    const isMenuVisible = menuSection && productsView && !menuSection.hidden && !productsView.hidden;
+
+    if (isMenuVisible) {
+      window.scrollBy({ top: Math.round(window.innerHeight * 0.72), behavior: "smooth" });
+      return;
+    }
+
+    const target = document.getElementById("category-section") || document.querySelector(".search-section");
+    if (target && !target.hidden) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
 
   updateArrowVisibility();
   window.addEventListener("scroll", updateArrowVisibility, { passive: true });
